@@ -13,7 +13,7 @@ public class Test {
     public static void main(String[] args) {
         FileManager fmanager = new FileManager();
         fmanager.openFile("reTable");
-        System.out.println(fmanager.dataExists(new RealEstate("1B", "McArthur", 304f, 209f)));
+        fmanager.removeData(new RealEstate(6112565634L,"1B", "McArthur", 304f, 209f));
         
     }
 }

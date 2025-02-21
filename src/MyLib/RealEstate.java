@@ -24,6 +24,14 @@ public class RealEstate implements IGenerateID{
         this.price = price;
         this.id = this.generateID();
     }
+    
+    public RealEstate(long id, String blockNumber, String streetName, float size, float price) {
+        this.blockNumber = blockNumber;
+        this.streetName = streetName;
+        this.size = size;
+        this.price = price;
+        this.id = id;
+    }
 
     @Override
     public long generateID() {
@@ -40,6 +48,11 @@ public class RealEstate implements IGenerateID{
     @Override
     public String toString() {
         return id + "\t\t\t" + blockNumber + "\t\t\t" + streetName + "\t\t\t" + size + "\t\t\t" + price;
+    }
+
+    @Override
+    public long getID() {
+        return id;
     }
     
     

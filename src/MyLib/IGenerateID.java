@@ -9,5 +9,7 @@ package MyLib;
  * @author Joseph Rey
  */
 public interface IGenerateID {
+    long id = 0;
     long generateID();
+    long getID();
 }

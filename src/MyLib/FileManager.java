@@ -91,7 +91,7 @@ public class FileManager {
                 continue;
             }
             
-            table.add(scan.nextLine().split("\t*\s"));
+            table.add(scan.nextLine().split("\\t*\\s"));
         }
         
         return table;
@@ -108,23 +108,39 @@ public class FileManager {
         }
     }
     
-    public void removeData(Object object) {
+    public void removeData(IGenerateID object) {
+        ignoreHeader = true;
         ArrayList<String[]> table = this.extractData(false);
-        if(table.remove(object.toString().split("\t*\s"))) {
-            System.out.println("Data '" + object.toString() + "' has been removed from " + file.getName());
-        }
-        else {
-            System.out.println("Data '" + object.toString() + "' cannot be removed");
+        if(this.dataExists(object)) {
+            for(int i = 1; i > table.size(); i++) {
+                if(Long.parseLong(table.get(i)[0]) == object.getID()) {
+                    table.remove(i);
+                    break;
+                }
+            }
+            
+            try {
+                writer = new FileWriter(file);
+                for(String[] row : table) {
+                    String.join("\t\t\t", row);
+
+                }
+            }
+            catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
     
-    public boolean dataExists(Object Object) {
+    public boolean dataExists(IGenerateID object) {
         boolean exists = false;
-        long objectID = Long.parseLong(Object.toString().split("\t*\s")[0]);
-        ArrayList<String[]> table = this.extractData(false);
+        long objectID = object.getID();
+        ArrayList<String[]> table = this.extractData(true);
         
         for(String[] row : table) {
-            if(row[0].equals(objectID)) {
+            System.out.println(row[0]);
+            System.out.println(objectID);
+            if(Long.parseLong(row[0]) == objectID) {
                 exists = true;
                 break;
             }

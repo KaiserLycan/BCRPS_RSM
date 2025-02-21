@@ -1,1 +1,2 @@
-0			1B			McArthur			304.0			209.0
+ID			Block_Number			Street_Name			Price			Size
+6112565634			1B			McArthur			304.0			209.0
