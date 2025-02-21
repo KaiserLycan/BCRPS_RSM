@@ -1,0 +1,9 @@
+NAME			PASSWORD			TYPE
+Kasier			123			ADMIN
+Kaiser			1234			ADMIN
+Kaiser			1234			ADMIN
+Kaiser			1234			ADMIN
+Kaiser			1234			ADMIN
+Kaiser			1234			ADMIN
+Kaiser			1234			ADMIN
+Kaiser			1234			ADMIN
