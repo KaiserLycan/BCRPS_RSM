@@ -55,7 +55,7 @@ public class FileManager {
                 scan.nextLine();
                 continue;
             }
-            table.add(scan.nextLine().split("\\t+\\s"));
+            table.add(scan.nextLine().split("\\t+"));
             }
         }
         catch(IOException ex) {
@@ -167,7 +167,7 @@ public class FileManager {
      */
     public void updateData(IGenerateID data) {
         ArrayList<String[]> table = this.extractData(false);
-        String[] content = data.toString().split("\\t+\\s");
+        String[] content = data.toString().split("\\t+");
         long contentID = 0l;
         
         if(this.dataExists(data)) {
