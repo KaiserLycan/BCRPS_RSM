@@ -11,25 +11,25 @@ import java.util.Date;
  * @author Joseph Rey
  */
 public class RealEstate implements IGenerateID{
-    private long id;
+     private long id;
     private String blockNumber;
     private String streetName;
     private float size;
-    private float price;
+    private float price = 0f;
+    private String status = "AVAILABLE";
 
-    public RealEstate(String blockNumber, String streetName, float size, float price) {
+    public RealEstate(String blockNumber, String streetName, float size) {
         this.blockNumber = blockNumber;
         this.streetName = streetName;
         this.size = size;
-        this.price = price;
         this.id = this.generateID();
     }
     
-    public RealEstate(long id, String blockNumber, String streetName, float size, float price) {
-        this.blockNumber = blockNumber;
-        this.streetName = streetName;
-        this.size = size;
-        this.price = price;
+    public RealEstate(long id) {
+        this.id = id;
+    }
+    
+    public void changeID(Long id) {
         this.id = id;
     }
 
@@ -47,13 +47,45 @@ public class RealEstate implements IGenerateID{
     
     @Override
     public String toString() {
-        return id + "\t\t\t" + blockNumber + "\t\t\t" + streetName + "\t\t\t" + size + "\t\t\t" + price;
+        return blockNumber + "\t\t\t" + streetName + "\t\t\t" + String.format("%.2f", size) + "\t\t\t" + String.format("%.2f", price) + "\t\t\t" + status;
     }
 
     @Override
     public long getID() {
         return id;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getBlockNumber() {
+        return blockNumber;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
+    
+    
     
     
     

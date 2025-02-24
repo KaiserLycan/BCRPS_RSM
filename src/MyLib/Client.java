@@ -17,6 +17,11 @@ public class Client extends User{
     private String mobileNumber;
     private String email;
     
+    public Client(String username, String password) {
+        super(username, password);
+        this.type = "CLIENT";
+    }
+    
     public Client (String firstName, String lastName, String username, String password, String mobileNumber, String email) {
         super(username, password);
         this.firstName = firstName;
@@ -24,17 +29,7 @@ public class Client extends User{
         this.mobileNumber = mobileNumber;
         this.email = email;
         this.id = generateID();
-    }
-    
-    private long generateID() {
-        Date date = new Date();
-        int day = date.getDay();
-        int month = date.getMonth();
-        int year = date.getYear();
-        int hours = date.getHours();
-        int minutes = date.getMinutes();
-        int seconds = date.getSeconds();
-        return Long.parseLong(day + "" + month + "" + year + "" + hours + "" + minutes + "" + seconds);
+        super.type = "CLIENT";
     }
     
 }
