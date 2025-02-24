@@ -5,6 +5,7 @@
 package WindowPackages;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 /**
  *
  * @author Dinel
@@ -185,12 +186,19 @@ public class LogInWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    /*FACTORY DIAGRAM **APPLICABLE HEHE*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        JFrame logIn = new ClientWindow();
+        logIn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        JFrame register = new ClientWindow();
+        register.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
