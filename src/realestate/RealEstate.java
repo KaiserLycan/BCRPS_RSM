@@ -9,14 +9,58 @@ package realestate;
  * @author Joseph Rey
  */
 public class RealEstate {
+    private Long id;
+    private String blockNumber;
+    private String streetName;
+    private float size;
+    private float price;
+    private String status;
+    private Client owner;
+    private Invoice invoice;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        //Working
-        //hellooo
+    public RealEstate(String blockNumber, String streetName, float size, float prize) {
+        this.blockNumber = blockNumber;
+        this.streetName = streetName;
+        this.size = size;
+        this.price = prize;
+    }
+
+    public RealEstate(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getBlockNumber() {
+        return blockNumber;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public float getPrize() {
+        return price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Client getOwner() {
+        return owner;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
     }
     
+
 }
+
