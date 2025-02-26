@@ -11,6 +11,6 @@ package MyLibs;
 
 
 public interface IGenerateID {
-    long generateID();
-    long getID();
+    long generateId();
+    long getId();
 }

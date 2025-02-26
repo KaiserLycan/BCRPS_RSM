@@ -10,7 +10,7 @@ package MyLibs;
  */
 
 
-public class RealEstate {
+public class RealEstate implements IGenerateID {
     private Long id;
     private String blockNumber;
     private String streetName;
@@ -22,11 +22,11 @@ public class RealEstate {
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Constructors
-    public RealEstate(String blockNumber, String streetName, float size, float prize) {
+    public RealEstate(String blockNumber, String streetName, float size, float price) {
         this.blockNumber = blockNumber;
         this.streetName = streetName;
         this.size = size;
-        this.price = prize;
+        this.price = price;
     }
 
     public RealEstate(Long id) {
@@ -37,13 +37,19 @@ public class RealEstate {
     ///////////////////////////////////////////////////////////////////////////////////////
     // User-defined methods
 
-
+    
+    @Override
+    public long generateId() {
+        return 0l;
+    }
+    
 
 
     ///////////////////////////////////////////////////////////////////////////////////////
     // Getters and Setters
 
-    public Long getId() {
+    @Override
+    public long getId() {
         return id;
     }
 
@@ -74,7 +80,41 @@ public class RealEstate {
     public Invoice getInvoice() {
         return invoice;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setBlockNumber(String blockNumber) {
+        this.blockNumber = blockNumber;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public void setSize(float size) {
+        this.size = size;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
     
+    
+
 
 }
 

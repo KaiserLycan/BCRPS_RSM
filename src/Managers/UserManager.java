@@ -1,5 +1,8 @@
-package MyLib;
+package Managers;
 
+import MyLibs.Admin;
+import MyLibs.Client;
+import MyLibs.User;
 import java.util.ArrayList;
 
 /*
@@ -38,9 +41,8 @@ public class UserManager {
                 ex.printStackTrace();
             }
             
-            user = new User(row[1], row[2]);
-            user.setType(row[3]);
-            user.setID(contentID);
+            user = new User(row[1], row[2], "USER");
+            user.setId(contentID);
             datas.add(user);
         }
         
@@ -57,7 +59,7 @@ public class UserManager {
             
             if(user.verifyLogin(username, password)) {
                 admin = new Admin(user.getUsername(), user.getPassword());
-                admin.setID(user.getID());
+                admin.setId(user.getId());
                 break;
             }
         }
@@ -77,7 +79,7 @@ public class UserManager {
           if(user.verifyLogin(username, password)) {
               cl = new Client(user.getUsername(), user.getPassword());
               //TODO: Retrieve client information
-              cl.setID(user.getID());
+              cl.setId(user.getId());
               break;
           }
       }
@@ -88,7 +90,7 @@ public class UserManager {
     public User lookUpUser(String username, String password) {
         User user = null;
         
-        if(this.userExist(new User(username, password))) {
+        if(this.userExist(new User(username, password, "USER"))) {
             for(User xuser : users) {
                 if(xuser.verifyLogin(username, password)) {
                     user = xuser;
