@@ -27,6 +27,8 @@ public class LogInWindow extends javax.swing.JFrame {
     public LogInWindow() {
         initComponents();
         //dispaly Images in the jLabel
+        this.setResizable(false); // Makes it so the user cannot resize the form
+        this.setLocationRelativeTo(null); // opens the form in the middle of the screen
        jLabel1_Image.setIcon(new ImageIcon(new ImageIcon("./src/images/Profile.png/").getImage().getScaledInstance(87, 85,Image.SCALE_DEFAULT)));
         
     }
@@ -199,7 +201,7 @@ public class LogInWindow extends javax.swing.JFrame {
         
         
         if(!username.trim().equals("") && !password.trim().equals("")) {
-            User user = um.LoginUser(username, password);
+            User user = um.loginUser(username, password);
             if(user != null) {
                 if(user.getType().equals("ADMIN")) {
                 JFrame adminWin = new AdminWindow();

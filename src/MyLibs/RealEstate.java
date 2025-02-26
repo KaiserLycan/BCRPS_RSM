@@ -13,7 +13,7 @@ package MyLibs;
 public class RealEstate implements IGenerateID {
     private Long id;
     private String blockNumber;
-    private String streetName;
+    private int lotNumber;
     private float size;
     private float price;
     private String status;
@@ -22,9 +22,9 @@ public class RealEstate implements IGenerateID {
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Constructors
-    public RealEstate(String blockNumber, String streetName, float size, float price) {
+    public RealEstate(String blockNumber, int lotNumber, float size, float price) {
         this.blockNumber = blockNumber;
-        this.streetName = streetName;
+        this.lotNumber = lotNumber;
         this.size = size;
         this.price = price;
     }
@@ -57,15 +57,15 @@ public class RealEstate implements IGenerateID {
         return blockNumber;
     }
 
-    public String getStreetName() {
-        return streetName;
+    public int getLotNumber() {
+        return lotNumber;
     }
 
     public float getSize() {
         return size;
     }
 
-    public float getPrize() {
+    public float getPrice() {
         return price;
     }
 
@@ -89,8 +89,8 @@ public class RealEstate implements IGenerateID {
         this.blockNumber = blockNumber;
     }
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public void setLotNumber(int lotNumber) {
+        this.lotNumber = lotNumber;
     }
 
     public void setSize(float size) {

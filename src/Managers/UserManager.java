@@ -49,7 +49,7 @@ public class UserManager {
         return datas;
     }
     
-    public User LoginUser(String username, String password) {
+    public User loginUser(String username, String password) {
         User user = null;
         
         for(User xuser : users) {
