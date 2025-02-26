@@ -18,6 +18,8 @@ public class RealEstate {
     private Client owner;
     private Invoice invoice;
 
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Constructors
     public RealEstate(String blockNumber, String streetName, float size, float prize) {
         this.blockNumber = blockNumber;
         this.streetName = streetName;
@@ -28,6 +30,16 @@ public class RealEstate {
     public RealEstate(Long id) {
         this.id = id;
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    // User-defined methods
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    // Getters and Setters
 
     public Long getId() {
         return id;

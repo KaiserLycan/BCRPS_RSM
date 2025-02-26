@@ -10,22 +10,22 @@ import java.util.ArrayList;
  *
  * @author Andrei Samarita
  */
-import java.util.ArrayList;
 
-/**
- *
- * @author Andrei Samarita
- */
-public class Client {
-    private String FirstName;
-    private String LastName;
-    private String mobileNumber;
-    private String email;
-    private ArrayList<RealEstate> purchases;
+ public class Client extends User{
+     private String FirstName;
+     private String LastName;
+     private String mobileNumber;
+     private String email;
+     private ArrayList<RealEstate> purchases = new ArrayList<>();
 
-    public Client(String FirstName, String LastName) {
-        this.FirstName = FirstName;
-        this.LastName = LastName;
+    public Client(String username, String password) {
+        super(username, password);
+    }
+
+    public void buyRealEstate(RealEstate re) {
+    }
+
+    public void reserveRealEstate(RealEstate re) {
     }
 
     public String getFirstName() {
@@ -48,6 +48,4 @@ public class Client {
         return purchases;
     }
     
-
-    //
 }

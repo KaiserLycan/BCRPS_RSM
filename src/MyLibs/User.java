@@ -6,22 +6,25 @@ package realestate;
 
 /**
  *
- * @author Andrei Samarita
+ * @author Andrei Samarita and Busano
  */
 public class User {
+    private Long id;
     private String username;
     private String password;
-    private Long id;
     private String Type;
 
-    public User(String username, String password, Long id, String Type) {
+    public User(String username, String password, String Type) {
         this.username = username;
         this.password = password;
-        this.id = id;
         this.Type = Type;
+    }
+    
+    public void setId(long id) {
+        this.id = id;
     }
     
     private boolean verifyLogin(){
     return true;
-}
+    }
 }
