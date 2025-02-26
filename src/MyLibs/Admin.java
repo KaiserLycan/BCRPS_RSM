@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package realestate;
+package MyLibs;
 
 /**
  *
@@ -12,19 +12,45 @@ public class Admin extends User{
     private UserManager um;
     private RealEstateManager rem;
 
+    //////////////////////////////////////////////////////////////////
+    /// Constructors
     public Admin(String username, String password) {
-        super(username, password);
+        super(username, password, ADMIN);
     }
 
-    public void addRealEstate(RealEstate re){}
-    
-    public void removeRealEstate(RealEstate re){}
 
-    public void changeRealEstatePrice(Long RealEstateID, float price){}
+    ////////////////////////////////////////////////////////////////
+    /// User defined functoins
+    public void addRealEsate(RealEstate re) {
+        rem.getFmanager().addData(re);
+        rem.refreshListings();
+    }
+    
+    public void deleteRealEstate(RealEstate re) {
+        rem.getFmanager().removeData(re);
+        rem.refreshListings();
+    }
+    
+    public void changRealEstatePrice(long id, float price) {
+        for(RealEstate re : rem.getListings()) {
+            if(re.getID() == id) {
+                re.setPrice(price);
+            }
+        }
+    }
+    
+    public void viewUsers() {
+        for(User user : um.getUsers()) {
+            System.out.println( user.getID() + "\t\t\t" + user.toString());
+        }
+    }
+    
+    public void registerNewAdmin(String username, String password, String confirmPassword) {
+        um.registerUser(username, password, this, confirmPassword);
+    }
+    
 
-    public void viewUsersInformation(){}
-    
-    public void registerNewAdmin(String username, String password, String confirmpassword){}
-    
+    ///////////////////////////////////////////////////////////////////////////////////////
+    /// Getters and Setters
     
 }
