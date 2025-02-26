@@ -45,7 +45,7 @@ public class FileManager {
      * @param ignoreHeader  If TRUE extract file content. If FALSE extract file content and header.
      * @return ArrayList<String[]>  List of rows containing columns of data extracted from the file
      */
-    public ArrayList<String[]> extractData(boolean ignoreHeader) {
+    protected ArrayList<String[]> extractData(boolean ignoreHeader) {
         ArrayList<String[]> table = new ArrayList<>(); //List to return
         this.ignoreHeader = ignoreHeader;
         
@@ -140,7 +140,7 @@ public class FileManager {
      * Appends data onto the file but only if the data doesn't already exist.
      * @param  data an instance of a class that implements IGenerateID interface
      */
-    public void addData(IGenerateID data) {
+    protected void addData(IGenerateID data) {
         if(!this.dataExists(data)) {
             /*
             How does this work?
@@ -166,7 +166,7 @@ public class FileManager {
      * Changes the values of data in the file but only if it exist.
      * @param data an instance of a class that implements IGenerateID interface.
      */
-    public void updateData(IGenerateID data) {
+    protected void updateData(IGenerateID data) {
         ArrayList<String[]> table = this.extractData(false);
         String[] content = data.toString().split("\\t+");
         long contentID = 0l;
@@ -222,7 +222,7 @@ public class FileManager {
      * Removes data from the file but only if it has not have already been removed.
      * @param data an instance of a class that implements IGeneratedID
      */
-    public void removeData(IGenerateID data) {
+    protected void removeData(IGenerateID data) {
         ArrayList<String[]> table = this.extractData(false);
         long contentID = 0l;
         ignoreHeader = true;
