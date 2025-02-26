@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MyLib;
+package Managers;
 
+import MyLibs.IGenerateID;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -100,7 +101,7 @@ public class FileManager {
             
             //Checkes if user exist based on ID if not then check if the content
             //has existing copies.
-            if(contentID == data.getID()) {
+            if(contentID == data.getId()) {
                 exists = true;
                 break;
             }
@@ -149,7 +150,7 @@ public class FileManager {
             the resources (e.g. FileWriter), while also handling exceptions.
             */
             try (FileWriter writer = new FileWriter(file, true)) {
-                writer.append( data.getID() + "\t\t\t"+ data.toString() + '\n');
+                writer.append( data.getId() + "\t\t\t"+ data.toString() + '\n');
             }
             catch(IOException ex) {
                 System.out.println(ex.getMessage());
@@ -185,7 +186,7 @@ public class FileManager {
                     ex.printStackTrace();
                 }
                 
-                if(contentID == data.getID()) {
+                if(contentID == data.getId()) {
                     /*
                     This code below essentially copies the components of from 
                     conent array starting at it's first to last componets 
@@ -235,7 +236,7 @@ public class FileManager {
                     System.out.println(ex.getMessage());
                 }
                 
-                if(contentID == data.getID()) {
+                if(contentID == data.getId()) {
                     table.remove(i);
                     break;
                 }

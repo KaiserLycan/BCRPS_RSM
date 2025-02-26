@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MyLib;
+package Managers;
 
+import MyLibs.RealEstate;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -47,11 +47,8 @@ public class RealEstateManager {
             size = Float.parseFloat(row[4]);
             status = row[5];
             
-            RealEstate re = new RealEstate(blockNumber, streetName, price);
-            re.changeID(id);
-            re.setPrice(price);
-            re.setStatus(status);
-            
+            RealEstate re = new RealEstate(blockNumber, streetName, size, price);
+            //TODO: ADD SETTERS TO RealEstate
             data.add(re);
         }
         
@@ -68,16 +65,26 @@ public class RealEstateManager {
     
     public void updateRealEstateStatus(Long id, String status) {
         for(RealEstate re : this.listings) {
-            if(id == re.getID()) {
+            if(id == re.getId()) {
                 re.setStatus(status.toUpperCase());
                 this.fmanager.updateData(re);
             }
         }
     }
     
+    public void addRealEstate(RealEstate re) {
+        fmanager.addData(re);
+        refreshListings();
+    }
+    
+    public void removeRealEstate(RealEstate re) {
+        fmanager.removeData(re);
+        refreshListings();
+    }
+    
     public void viewListings() {
         for(RealEstate re : listings) {
-            System.out.println(re.getID() + "\t\t\t" + re.toString());
+            System.out.println(re.getId() + "\t\t\t" + re.toString());
         }
     }
     
