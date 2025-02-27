@@ -12,19 +12,19 @@ public class User implements IGenerateID{
     private long id;
     private String username;
     private String password;
-    private String Type;
+    private String type;
 
     /////////////////////////////////////////////////////////////
     /// Constructors
     public User(String username, String password, String Type) {
         this.username = username;
         this.password = password;
-        this.Type = Type;
+        this.type = Type;
     }
 
     //////////////////////////////////////////////////////////////
     /// User-defined functions 
-    public boolean verifyLogin(String username1, String password1){
+    public boolean verifyLogin(String username1, String password){
         return this.username.equals(username) && this.password.equals(password);
     }
     
@@ -32,6 +32,10 @@ public class User implements IGenerateID{
     @Override
     public long generateId() {
         return 0l;
+    }
+    
+    public String toString() {
+        return username + "," + password + "," + type;
     }
     ///////////////////////////////////////////////////////////////
     /// Gettes and Setters
@@ -64,11 +68,11 @@ public class User implements IGenerateID{
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String Type) {
-        this.Type = Type;
+        this.type = Type;
     }
 
     

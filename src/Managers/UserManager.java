@@ -41,7 +41,7 @@ public class UserManager {
                 ex.printStackTrace();
             }
             
-            user = new User(row[1], row[2], "USER");
+            user = new User(row[1], row[2], row[3]);
             user.setId(contentID);
             datas.add(user);
         }
@@ -49,53 +49,13 @@ public class UserManager {
         return datas;
     }
     
-    public Admin loginAdmin(String username, String password) {
-        Admin admin = null;
-        
-        for(User user : users) {
-            if(!"ADMIN".equals(user.getType() )) {
-                continue;
-            }
-            
-            if(user.verifyLogin(username, password)) {
-                admin = new Admin(user.getUsername(), user.getPassword());
-                admin.setId(user.getId());
-                break;
-            }
-        }
-        
-        return admin;
-    }
-    
-    public Client loginClient(String username, String password) {
-        Client cl = null;
-        
-        for(User user : users) {
-
-          if("CLIENT".equals(user.getType() )) {
-              continue;
-          }
-
-          if(user.verifyLogin(username, password)) {
-              cl = new Client(user.getUsername(), user.getPassword());
-              //TODO: Retrieve client information
-              cl.setId(user.getId());
-              break;
-          }
-      }
-
-      return cl;
-    }
-    
-    public User lookUpUser(String username, String password) {
+    public User loginUser(String username, String password) {
         User user = null;
         
-        if(this.userExist(new User(username, password, "USER"))) {
-            for(User xuser : users) {
-                if(xuser.verifyLogin(username, password)) {
-                    user = xuser;
-                    break;
-                }
+        for(User xuser : users) {
+            if(xuser.verifyLogin(username, password)) {
+                user = xuser;
+                break;
             }
         }
         

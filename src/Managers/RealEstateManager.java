@@ -34,7 +34,7 @@ public class RealEstateManager {
         ArrayList<RealEstate> data = new ArrayList<>();
         long id;
         String blockNumber;
-        String streetName;
+        int lotNumber;
         float price;
         float size;
         String status;
@@ -42,13 +42,15 @@ public class RealEstateManager {
         for(String[] row: table) {
             id = Long.parseLong(row[0]);
             blockNumber = row[1];
-            streetName = row[2];
+            lotNumber = Integer.parseInt(row[2]);
             price = Float.parseFloat(row[3]);
             size = Float.parseFloat(row[4]);
             status = row[5];
             
-            RealEstate re = new RealEstate(blockNumber, streetName, size, price);
+            RealEstate re = new RealEstate(blockNumber, lotNumber, size, price);
             //TODO: ADD SETTERS TO RealEstate
+            re.setId(id);
+            re.setStatus(status);
             data.add(re);
         }
         
