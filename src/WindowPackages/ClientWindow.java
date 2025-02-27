@@ -45,9 +45,6 @@ public class ClientWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        browingButton = new javax.swing.JButton();
-        profileButton = new javax.swing.JButton();
-        purchaseButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         profileTab = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,39 +64,25 @@ public class ClientWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        browingButton = new javax.swing.JButton();
+        purchaseButton = new javax.swing.JButton();
+        profileButton = new javax.swing.JButton();
+        purchaseButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        browingButton.setText("Browsing Tab");
-
-        profileButton.setText("Profile Tab");
-
-        purchaseButton.setText("Purchased Windwo");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(browingButton)
-                .addGap(33, 33, 33)
-                .addComponent(profileButton)
-                .addGap(26, 26, 26)
-                .addComponent(purchaseButton)
-                .addContainerGap())
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(browingButton)
-                    .addComponent(profileButton)
-                    .addComponent(purchaseButton))
-                .addGap(21, 21, 21))
+            .addGap(0, 95, Short.MAX_VALUE)
         );
 
         jLabel2.setText("Profile Tab");
@@ -111,14 +94,14 @@ public class ClientWindow extends javax.swing.JFrame {
             .addGroup(profileTabLayout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(970, Short.MAX_VALUE))
+                .addContainerGap(602, Short.MAX_VALUE))
         );
         profileTabLayout.setVerticalGroup(
             profileTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profileTabLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jLabel2)
-                .addContainerGap(540, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Profile Tab", profileTab);
@@ -132,14 +115,14 @@ public class ClientWindow extends javax.swing.JFrame {
             .addGroup(pruchasedTabLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1037, Short.MAX_VALUE))
+                .addContainerGap(669, Short.MAX_VALUE))
         );
         pruchasedTabLayout.setVerticalGroup(
             pruchasedTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pruchasedTabLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3)
-                .addContainerGap(569, Short.MAX_VALUE))
+                .addContainerGap(511, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Purchased Window", pruchasedTab);
@@ -224,40 +207,42 @@ public class ClientWindow extends javax.swing.JFrame {
             browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(browingTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(916, Short.MAX_VALUE))
-            .addGroup(browingTabLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(browingTabLayout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
-                        .addComponent(Budget, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(₱1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Minimum, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(browingTabLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(browingTabLayout.createSequentialGroup()
-                        .addComponent(₱2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Maximum, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(browingTabLayout.createSequentialGroup()
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jButton4))))
-                    .addGroup(browingTabLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(475, 475, 475))
+                                .addGap(0, 43, Short.MAX_VALUE)
+                                .addComponent(Budget, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(₱1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Minimum, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25))
+                            .addGroup(browingTabLayout.createSequentialGroup()
+                                .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(browingTabLayout.createSequentialGroup()
+                                .addComponent(₱2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Maximum, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(browingTabLayout.createSequentialGroup()
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jButton4))))
+                            .addGroup(browingTabLayout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(351, 351, 351))))
         );
         browingTabLayout.setVerticalGroup(
             browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,29 +264,76 @@ public class ClientWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(browingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(browingTabLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Browsing Tab", browingTab);
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        browingButton.setText("Browsing Tab");
+
+        purchaseButton.setText("Purchased Windwo");
+
+        profileButton.setText("Profile Tab");
+
+        purchaseButton1.setText("Payment");
+        purchaseButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(purchaseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(browingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(purchaseButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(198, 198, 198)
+                .addComponent(browingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(purchaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(purchaseButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -324,6 +356,10 @@ public class ClientWindow extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         model.addRow(new Object[] {"ID", "PRICE", "SIZE", "BLK. NO.", "LOT NO."});
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void purchaseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_purchaseButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,6 +408,7 @@ public class ClientWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
@@ -382,6 +419,7 @@ public class ClientWindow extends javax.swing.JFrame {
     private javax.swing.JPanel profileTab;
     private javax.swing.JPanel pruchasedTab;
     private javax.swing.JButton purchaseButton;
+    private javax.swing.JButton purchaseButton1;
     private javax.swing.JLabel ₱1;
     private javax.swing.JLabel ₱2;
     // End of variables declaration//GEN-END:variables
