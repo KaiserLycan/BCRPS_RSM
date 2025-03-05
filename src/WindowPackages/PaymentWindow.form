@@ -125,26 +125,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="PayButton" min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="CardNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="ExpirationDate" min="-2" pref="145" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="SecurityCode" min="-2" pref="107" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jTextField2" min="-2" pref="106" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                          <Component id="jTextField3" min="-2" pref="106" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="179" max="32767" attributes="0"/>
                   </Group>
@@ -155,21 +136,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="CardNumber" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ExpirationDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="SecurityCode" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField2" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="jTextField3" min="-2" pref="33" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="CancelButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="PayButton" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -188,40 +155,6 @@
                 <Property name="text" type="java.lang.String" value="Billing Information"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="CardNumber">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Card Number"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="ExpirationDate">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Expiration Date"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="SecurityCode">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Security Code"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="CancelButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
@@ -234,11 +167,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pay"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
