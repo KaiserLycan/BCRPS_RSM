@@ -84,7 +84,7 @@ public class LogInWindow extends javax.swing.JFrame {
         LogIn.setOpaque(false);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Name");
         jLabel3.setAutoscrolls(true);
@@ -96,7 +96,7 @@ public class LogInWindow extends javax.swing.JFrame {
         });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Password");
 
@@ -106,7 +106,9 @@ public class LogInWindow extends javax.swing.JFrame {
             }
         });
 
-        registerButton.setBackground(new java.awt.Color(0, 204, 255));
+        registerButton.setBackground(new java.awt.Color(0, 0, 0));
+        registerButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        registerButton.setForeground(new java.awt.Color(255, 255, 255));
         registerButton.setText("Register");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +116,9 @@ public class LogInWindow extends javax.swing.JFrame {
             }
         });
 
-        loginButton.setBackground(new java.awt.Color(51, 204, 255));
+        loginButton.setBackground(new java.awt.Color(0, 0, 0));
+        loginButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Log In");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,23 +131,26 @@ public class LogInWindow extends javax.swing.JFrame {
         LogInLayout.setHorizontalGroup(
             LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogInLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordInput)
                     .addGroup(LogInLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 204, Short.MAX_VALUE)
                         .addComponent(registerButton)
                         .addGap(18, 18, 18)
-                        .addComponent(loginButton)))
+                        .addComponent(loginButton))
+                    .addGroup(LogInLayout.createSequentialGroup()
+                        .addGroup(LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(usernameInput))
                 .addContainerGap())
         );
         LogInLayout.setVerticalGroup(
             LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogInLayout.createSequentialGroup()
-                .addContainerGap(111, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,16 +166,15 @@ public class LogInWindow extends javax.swing.JFrame {
         );
 
         getContentPane().add(LogIn);
-        LogIn.setBounds(647, 363, 254, 260);
+        LogIn.setBounds(570, 350, 400, 260);
         LogIn.getAccessibleContext().setAccessibleDescription("");
 
         jLabel1_Image.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bpi.jpg"))); // NOI18N
+        jLabel1_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/real-estate-agent.png")));
         jLabel1_Image.setDoubleBuffered(true);
         jLabel1_Image.setName(""); // NOI18N
-        jLabel1_Image.setOpaque(true);
         getContentPane().add(jLabel1_Image);
-        jLabel1_Image.setBounds(680, 240, 190, 180);
+        jLabel1_Image.setBounds(710, 240, 190, 180);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogInBg.png"))); // NOI18N
         jLabel1.setText("Hello");
@@ -205,13 +211,6 @@ public class LogInWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
-        JFrame register = new ClientWindow2();
-        register.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_registerButtonActionPerformed
-
     private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed
 
     }//GEN-LAST:event_passwordInputActionPerformed
@@ -219,6 +218,13 @@ public class LogInWindow extends javax.swing.JFrame {
     private void usernameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameInputActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // TODO add your handling code here:
+        JFrame register = new ClientWindow2();
+        register.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
