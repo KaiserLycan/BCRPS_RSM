@@ -6,14 +6,9 @@ package WindowPackages;
 import Managers.FileManager;
 import Managers.UserManager;
 import MyLibs.User;
-import java.awt.Image;
 import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 /**
  *
@@ -35,9 +30,7 @@ public class LogInWindow extends javax.swing.JFrame {
         
         
         //dispaly Images in the jLabel
-        
-        
-        
+
         
         this.setLocationRelativeTo(null); // opens the form in the middle of the screen
         
@@ -64,6 +57,7 @@ public class LogInWindow extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
         jLabel1_Image = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -150,7 +144,7 @@ public class LogInWindow extends javax.swing.JFrame {
         LogInLayout.setVerticalGroup(
             LogInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogInLayout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,15 +160,20 @@ public class LogInWindow extends javax.swing.JFrame {
         );
 
         getContentPane().add(LogIn);
-        LogIn.setBounds(570, 350, 400, 260);
+        LogIn.setBounds(570, 430, 400, 180);
         LogIn.getAccessibleContext().setAccessibleDescription("");
 
         jLabel1_Image.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1_Image.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
+        jLabel1_Image.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1_Image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/real-estate-agent.png")));
+        jLabel1_Image.setText("LOGO");
         jLabel1_Image.setDoubleBuffered(true);
         jLabel1_Image.setName(""); // NOI18N
+        jLabel1_Image.setOpaque(true);
         getContentPane().add(jLabel1_Image);
-        jLabel1_Image.setBounds(710, 240, 190, 180);
+        jLabel1_Image.setBounds(670, 240, 190, 180);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogInBg.png"))); // NOI18N
         jLabel1.setText("Hello");
@@ -183,6 +182,15 @@ public class LogInWindow extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(1536, 864));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1530, 864);
+
+        jLabel10.setBackground(new java.awt.Color(51, 0, 255));
+        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("LOGO");
+        jLabel10.setOpaque(true);
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(0, 0, 70, 33);
     }// </editor-fold>//GEN-END:initComponents
 
     /*FACTORY DIAGRAM **APPLICABLE HEHE*/
@@ -191,24 +199,28 @@ public class LogInWindow extends javax.swing.JFrame {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
 
-        if(!username.trim().equals("") && !password.trim().equals("")) {
+        if (!username.trim().equals("") && !password.trim().equals("")) {
             User user = um.loginUser(username, password);
-            if(user != null) {
-                if(user.getType().equals("ADMIN")) {
+            if (user != null) {
+                JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                if (user.getType().equals("ADMIN")) {
                     JFrame adminWin = new AdminWindow();
                     adminWin.setVisible(true);
                     this.dispose();
-                }
-                else if(user.getType().equals("CLIENT")) {
+                } else if (user.getType().equals("CLIENT")) {
                     JFrame clWin = new ClientWindow2();
                     clWin.setVisible(true);
                     this.dispose();
                 }
-            }
-            else{
-                System.out.println("User does not exist");
+            } else {
+                JOptionPane.showMessageDialog(this, "User does not exist", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        //towindow
+        JFrame register = new ClientWindow2();
+        register.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed
@@ -267,6 +279,7 @@ public class LogInWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LogIn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel1_Image;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
