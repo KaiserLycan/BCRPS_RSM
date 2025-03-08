@@ -2,12 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MyLibs;
+package Payment;
+
+import RealEstate.Lot;
 
 /**
  *
- * @author Andrei Samarita
+ * @author Joseph Rey
  */
-public class Invoice {
-   
+public abstract class Payment {
+    protected Invoice invoice;
+    public abstract void payment(Lot lot);
 }
