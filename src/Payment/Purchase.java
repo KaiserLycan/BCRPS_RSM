@@ -11,11 +11,11 @@ import java.time.LocalDate;
  *
  * @author Joseph Rey
  */
-public class Purchase extends Payment{
+public class Purchase implements IPayment{
 
     @Override
-    public void payment(Lot lot) {
-        super.invoice = new Invoice();
+    public Invoice pay(Lot lot) {
+        Invoice invoice = new Invoice();
         invoice.setDataIssued(LocalDate.now());
         invoice.setLotPrice(lot.getPrice());
         if(lot.getHouse() != null) {
@@ -25,6 +25,8 @@ public class Purchase extends Payment{
             invoice.setHousePrice(0);
         }
         invoice.setDeductibles(0);
+        
+        return invoice;
     }
     
 }

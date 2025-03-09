@@ -17,7 +17,7 @@ public class Bungalow implements IHouse {
     private float fixedPrice;
     private String description;
     private int type = 1;
-    private ImageIcon image = new ImageIcon("./src/Images/house.png");
+    private ImageIcon image = new ImageIcon("./src/Images/bungalow.jpg");
 
     
     ///////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ public class Bungalow implements IHouse {
     
     
     @Override
-    public ImageIcon getImage() {
+    public ImageIcon getHouseImage() {
         return image;
     }
     

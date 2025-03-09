@@ -17,6 +17,6 @@ public interface IHouse {
     //Inteface Methods
     public float getHousePrice();
     public String getDescription();
-    public ImageIcon getImage();
+    public ImageIcon getHouseImage();
     public int getType();
 }

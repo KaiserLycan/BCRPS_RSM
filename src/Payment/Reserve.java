@@ -10,19 +10,19 @@ import RealEstate.Lot;
  *
  * @author Joseph Rey
  */
-public class Reserve extends Payment {
+public class Reserve implements IPayment {
     float deductedAmount;
     
     public Reserve(float deductedAmount) {
         this.deductedAmount = deductedAmount;
     }
     
-
-    @Override
-    public void payment(Lot lot) {
-        invoice = new Invoice();
+    public Invoice pay(Lot lot) {
+        Invoice invoice = new Invoice();
         invoice.setLotPrice(lot.getPrice());
         invoice.setHousePrice(lot.getHouse().getHousePrice());
         invoice.setDeductibles(0);
+        
+        return invoice;
     }
 }

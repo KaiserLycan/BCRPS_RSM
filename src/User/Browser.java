@@ -6,6 +6,7 @@ package User;
 
 import RealEstate.Block;
 import RealEstate.Lot;
+import java.text.DecimalFormat;
 
 import java.util.ArrayList;
 
@@ -19,20 +20,28 @@ public class Browser {
     private ArrayList<Block> listings;
     private FilterSearch filter;
 
+    
+    public Browser(ArrayList<Block> listings, FilterSearch filter) {
+        this.listings = listings;
+        this.filter = filter;
+    }
+    
     public void viewListings(DefaultTableModel table, boolean filtered) {
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        
         table.setRowCount(0);
-
+        
         if(filtered) {
             for(Block block : filter.getFilteredList()) {
                 for(Lot lot : block.getLots()) {
-                table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), String.format("%.2f", lot.getPrice()), String.format("%.2f", lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), lot.getHouse().getClass().getSimpleName()  });
+                table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), df.format(lot.getPrice()), df.format(lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), String.join(" ", lot.getHouse().getClass().getSimpleName().split("(?=[A-Z])"))  });
                 }
             }
         }
         else {
             for(Block block : listings) {
                 for(Lot lot : block.getLots()) {
-                    table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), String.format("%.2f", lot.getPrice()), String.format("%.2f", lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), lot.getHouse().getClass().getSimpleName() });
+                    table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), df.format(lot.getPrice()), df.format(lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), String.join(" ", lot.getHouse().getClass().getSimpleName().split("(?=[A-Z])"))  });
                 }
             }
         }
@@ -42,17 +51,10 @@ public class Browser {
         return listings;
     }
 
-    public void setListings(ArrayList<Block> listings) {
-        this.listings = listings;
-    }
-
     public FilterSearch getFilter() {
         return filter;
     }
 
-    public void setFilter(FilterSearch filter) {
-        this.filter = filter;
-    }
     
     
 }

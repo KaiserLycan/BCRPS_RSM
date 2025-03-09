@@ -15,19 +15,61 @@ import java.util.ArrayList;
 public class FilterSearch {
     private ArrayList<Block> filteredList;
     private ArrayList<Block> unfilteredList;
-
-    public FilterSearch(ArrayList<Block> filteredList) {
-        this.filteredList = filteredList;
-        this.unfilteredList = filteredList;
+    
+    public FilterSearch(ArrayList<Block> unfilteredList) {
+        this.filteredList = unfilteredList;
+        this.unfilteredList = unfilteredList;
     }
     
-    public FilterSearch filterByValues(String category, float min, float max) {
+    
+    
+    public FilterSearch filterStatus(String status) {
+        ArrayList<Block> filteringList = new ArrayList<>();
+
+        if(status.equals("all")) {
+            return this;
+        }
+        
+        for(Block block : filteredList) {
+            filteringList.add(new Block());
+            for(Lot lot: block.getLots()) {
+                if(lot.getStatus().toLowerCase().equals(status)) {
+                    filteringList.getLast().setBlockNo(block.getBlockNo());
+                    filteringList.getLast().getLots().add(lot);                }
+            }
+        }
+        
+        filteredList = filteringList;
+        return this;
+    }
+    
+    public FilterSearch filterLotType(String type) {
+        ArrayList<Block> filteringList = new ArrayList<>();
+        
+        if(type.equals("all")) {
+            return this;
+        }
+        
+        for(Block block: filteredList) {
+            filteringList.add(new Block());
+            for(Lot lot: block.getLots()) {
+                if(lot.getType().equals(type)) {
+                    filteringList.getLast().setBlockNo(block.getBlockNo());
+                    filteringList.getLast().getLots().add(lot);
+                }
+            }
+        }
+        
+        filteredList = filteringList;
+        return this;
+    }
+    
+    public FilterSearch filterValues(String category, float min, float max) {
         ArrayList<Block> filteringList = new ArrayList<>();
         
         if(category.equals("price")) {
             for(Block block: filteredList) {
                 filteringList.add(new Block());
-                
                 for(Lot lot: block.getLots()) {
                     if(lot.getPrice() >= min && lot.getPrice()  <= max) {
                         filteringList.getLast().setBlockNo(block.getBlockNo());
@@ -39,7 +81,6 @@ public class FilterSearch {
         else if(category.equals("size")) {
             for(Block block: filteredList) {
                 filteringList.add(new Block());
-                
                 for(Lot lot: block.getLots()) {
                     if(lot.getSize() >= min && lot.getSize()  <= max) {
                         filteringList.getLast().setBlockNo(block.getBlockNo());
@@ -50,51 +91,15 @@ public class FilterSearch {
         }
         
         filteredList = filteringList;
-        
         return this;
     }
     
-    public FilterSearch filterByLotType(String type) {
-        ArrayList<Block> filteringList = new ArrayList<>();
-        
-        
-        for(Block block: filteredList) {
-            filteringList.add(new Block());
-
-            for(Lot lot: block.getLots()) {
-                if(lot.getType().equals(type)) {
-                    filteringList.getLast().setBlockNo(block.getBlockNo());
-                    filteringList.getLast().getLots().add(lot);
-                }
-            }
-        }
-        
-        filteredList = filteringList;
-            
-        return this;
-    }
-    
-    public FilterSearch filterByLotStatus(String status) {
-        ArrayList<Block> filteringList = new ArrayList<>();
-        
-        for(Block block: filteredList) {
-            filteringList.add(new Block());
-
-            for(Lot lot: block.getLots()) {
-                if(lot.getStatus().equals(status.toLowerCase())) {
-                    filteringList.getLast().setBlockNo(block.getBlockNo());
-                    filteringList.getLast().getLots().add(lot);
-                }
-            }
-        }
-        
-        filteredList = filteringList;
-            
-        return this;
-    }
-
     public FilterSearch filterByHouse(int house) {
         ArrayList<Block> filteringList = new ArrayList<>();
+
+        if(house == 0) {
+            return this;
+        }
         
         for(Block block: filteredList) {
             filteringList.add(new Block());
@@ -108,18 +113,20 @@ public class FilterSearch {
                 }
             }
         }
+
         
         filteredList = filteringList;
-
         return this;
     }
 
-    public void clearFilter() {
+    
+
+    
+    public void resetFilter () {
         filteredList = unfilteredList;
     }
-
+    
     public ArrayList<Block> getFilteredList() {
         return filteredList;
     }
-    
 }

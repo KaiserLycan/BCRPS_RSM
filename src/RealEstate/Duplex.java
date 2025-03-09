@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  */
 public class Duplex implements IHouse {
     private float fixedPrice;
-    private ImageIcon image = new ImageIcon("./src/Images/house.png");
+    private ImageIcon image = new ImageIcon("./src/Images/duplex.jpg");
     private String description;
     private int type = 4;
 
@@ -31,7 +31,7 @@ public class Duplex implements IHouse {
     ///Getter
     
 
-    public ImageIcon getImage() {
+    public ImageIcon getHouseImage() {
         return image;
     }
 

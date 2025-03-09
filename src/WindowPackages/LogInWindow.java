@@ -29,11 +29,13 @@ public class LogInWindow extends javax.swing.JFrame {
      * Creates new form LogInWindow
      */
     public LogInWindow() {
+        
         master.setUserFm(new FileManager(userFile));
         master.refreshUsers();
         logger = new Login(master);
         initComponents();
-        
+        ClientWindow2 cl = new ClientWindow2();
+        cl.setVisible(true);
     }
 
     /**

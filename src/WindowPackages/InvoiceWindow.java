@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package WindowPackages;
+import Payment.Invoice;
 import javax.swing.ImageIcon; //
 import javax.swing.JOptionPane;
 
@@ -15,10 +16,17 @@ public class InvoiceWindow extends javax.swing.JFrame {
     /**
      * Creates new form PaymentWindow
      */
+    Invoice inv;
     public InvoiceWindow() {
         initComponents();
   
     }
+
+    public void setInv(Invoice inv) {
+        this.inv = inv;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

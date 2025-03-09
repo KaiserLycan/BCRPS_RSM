@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  */
 public class ModernMinimalist implements IHouse {
     private float fixedPrice;
-    private ImageIcon image = new ImageIcon("./src/Images/house.png");
+    private ImageIcon image = new ImageIcon("./src/Images/modernMinimalist.jpg");
     private String description;
     private int type = 3;
  
@@ -29,7 +29,7 @@ public class ModernMinimalist implements IHouse {
     /////////////////////////////////////////////////////////////////////////
     ///Getters
     
-    public ImageIcon getImage() {
+    public ImageIcon getHouseImage() {
         return image;
     }
 

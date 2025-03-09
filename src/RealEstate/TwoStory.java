@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 public class TwoStory implements IHouse {
     private float fixedPrice;
     private int type = 5;
-    private ImageIcon image = new ImageIcon("./src/Images/house.png");
+    private ImageIcon image = new ImageIcon("./src/Images/twoStory.jpg");
     private String description;
     
     /////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ public class TwoStory implements IHouse {
     }
 
     @Override
-    public ImageIcon getImage() {
+    public ImageIcon getHouseImage() {
         return image;
     }
 
