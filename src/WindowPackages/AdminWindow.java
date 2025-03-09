@@ -1287,7 +1287,7 @@ public class AdminWindow extends javax.swing.JFrame {
         lTextField.setText(bTable1.getValueAt(row, 4).toString());
 
         houseType = bTable1.getValueAt(row,7).toString();
-        lotType = bTable1.getValueAt(row, 4).toString();
+        lotType = bTable1.getValueAt(row, 6).toString();
 
         if(houseType.equals("bungalow")) {
             ht = 1;
@@ -1338,11 +1338,10 @@ public class AdminWindow extends javax.swing.JFrame {
         String price = String.join((""),pTextField.getText().toString().split((",")));
         String size = sTextField.getText().toString();
 
-        System.out.println(price);
         admin.updateLot(blockNo, lotNo, "size", size);
         admin.updateLot(blockNo, lotNo, "lotType", lotType);
         admin.updateLot(blockNo, lotNo, "house", "" + ht);
-//        admin.updateLot(blockNo, lotNo, "price", "10");
+        admin.updateLot(blockNo, lotNo, "price", price);
         viewLots();
     }                                             
 

@@ -625,7 +625,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         pnlCard2Layout.setHorizontalGroup(
             pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard2Layout.createSequentialGroup()
-                .addContainerGap(376, Short.MAX_VALUE)
+                .addContainerGap(380, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
         );
@@ -780,9 +780,15 @@ public class ClientWindow2 extends javax.swing.JFrame {
                     }
                 }
             }
-            invW.setInv(payment.pay(blockNo, lot));
-            invW.setVisible(true);
-            dispose();
+            
+            if(lot.getStatus().equals(("sold")) || lot.getStatus().equals("reserved")) {
+                JOptionPane.showMessageDialog(this, " This estate is already sold/reserved please look other available options", "Sorry", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                invW.setInv(payment.pay(blockNo, lot));
+                invW.setVisible(true);
+                dispose();
+            }
         }
         
     }//GEN-LAST:event_reserveActionPerformed
@@ -798,11 +804,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
             //Create a dialogue box encouraging the user to select a realestate
 //      Please selecet real estate hehe
         JOptionPane.showMessageDialog(this, " Please Select Real Estate", "Welcome", JOptionPane.INFORMATION_MESSAGE);
-        
-
-
-
-
         }
         else {
             invW = new InvoiceWindow();
@@ -817,9 +818,16 @@ public class ClientWindow2 extends javax.swing.JFrame {
                     }
                 }
             }
-            invW.setInv(payment.pay(blockNo, lot));
-            invW.setVisible(true);
-            dispose();
+            
+            if(lot.getStatus().equals(("sold")) || lot.getStatus().equals("reserved")) {
+                JOptionPane.showMessageDialog(this, " This estate is already sold/reserved please look other available options", "Sorry", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else {
+                invW.setInv(payment.pay(blockNo, lot));
+                invW.setVisible(true);
+                dispose();
+            }
+            
         }
     }//GEN-LAST:event_buyActionPerformed
 

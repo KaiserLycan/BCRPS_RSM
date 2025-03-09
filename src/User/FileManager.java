@@ -146,7 +146,10 @@ public class FileManager {
     
     public void updateData(int id, String category, String newData) {
         data = this.extractData();
+        boolean firstRun = true;
+        ArrayList<String[]> updatedData = data;
         String[] header = data.get(0);
+        
         String[] recordedData;
         int recordedId;
         int columnNo = 0;
@@ -159,7 +162,8 @@ public class FileManager {
         }
         
         for(String[] row : data) {
-            if(data.get(0).equals(row)) {
+            if(firstRun) {
+                firstRun = false;
                 continue;
             }
             
@@ -167,9 +171,9 @@ public class FileManager {
             recordedId = Integer.parseInt(row[0]);
             if(recordedId == id) {
                 recordedData[columnNo] = newData;
-                data.remove(row);
-                data.add(recordedData);
-                this.rewriteFile(data);
+                updatedData.remove(row);
+                updatedData.add(recordedData);
+                this.rewriteFile(updatedData);
             }
         }
     }
