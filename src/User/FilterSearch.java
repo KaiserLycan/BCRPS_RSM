@@ -14,9 +14,11 @@ import java.util.ArrayList;
  */
 public class FilterSearch {
     private ArrayList<Block> filteredList;
+    private ArrayList<Block> unfilteredList;
 
     public FilterSearch(ArrayList<Block> filteredList) {
         this.filteredList = filteredList;
+        this.unfilteredList = filteredList;
     }
     
     public FilterSearch filterByValues(String category, float min, float max) {
@@ -75,12 +77,11 @@ public class FilterSearch {
     public FilterSearch filterByLotStatus(String status) {
         ArrayList<Block> filteringList = new ArrayList<>();
         
-        
         for(Block block: filteredList) {
             filteringList.add(new Block());
 
             for(Lot lot: block.getLots()) {
-                if(lot.getStatus().equals(status)) {
+                if(lot.getStatus().equals(status.toLowerCase())) {
                     filteringList.getLast().setBlockNo(block.getBlockNo());
                     filteringList.getLast().getLots().add(lot);
                 }
@@ -90,6 +91,31 @@ public class FilterSearch {
         filteredList = filteringList;
             
         return this;
+    }
+
+    public FilterSearch filterByHouse(int house) {
+        ArrayList<Block> filteringList = new ArrayList<>();
+        
+        for(Block block: filteredList) {
+            filteringList.add(new Block());
+
+            for(Lot lot: block.getLots()) {
+                if(lot.getHouse() != null) {
+                    if(lot.getHouse().getType() == house) {
+                    filteringList.getLast().setBlockNo(block.getBlockNo());
+                    filteringList.getLast().getLots().add(lot);
+                    }
+                }
+            }
+        }
+        
+        filteredList = filteringList;
+
+        return this;
+    }
+
+    public void clearFilter() {
+        filteredList = unfilteredList;
     }
 
     public ArrayList<Block> getFilteredList() {

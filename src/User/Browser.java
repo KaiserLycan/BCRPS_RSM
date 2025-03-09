@@ -5,7 +5,11 @@
 package User;
 
 import RealEstate.Block;
+import RealEstate.Lot;
+
 import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,6 +18,25 @@ import java.util.ArrayList;
 public class Browser {
     private ArrayList<Block> listings;
     private FilterSearch filter;
+
+    public void viewListings(DefaultTableModel table, boolean filtered) {
+        table.setRowCount(0);
+
+        if(filtered) {
+            for(Block block : filter.getFilteredList()) {
+                for(Lot lot : block.getLots()) {
+                table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), String.format("%.2f", lot.getPrice()), String.format("%.2f", lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), lot.getHouse().getClass().getSimpleName()  });
+                }
+            }
+        }
+        else {
+            for(Block block : listings) {
+                for(Lot lot : block.getLots()) {
+                    table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), String.format("%.2f", lot.getPrice()), String.format("%.2f", lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), lot.getHouse().getClass().getSimpleName() });
+                }
+            }
+        }
+    }
 
     public ArrayList<Block> getListings() {
         return listings;

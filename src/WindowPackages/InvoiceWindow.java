@@ -141,12 +141,12 @@ public class InvoiceWindow extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
         jLabel9.setText("Size:");
         jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 316, -1, -1));
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 194, 338, 29));
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 261, 338, 29));
-        jPanel3.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 316, 338, 29));
-        jPanel3.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 379, 338, 29));
+        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 194, 350, 29));
+        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 261, 350, 29));
+        jPanel3.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 316, 350, 29));
+        jPanel3.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 379, 350, 29));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, -1, 720));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 710, 720));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1536, 869));
     }// </editor-fold>//GEN-END:initComponents

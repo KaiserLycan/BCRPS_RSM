@@ -7,23 +7,40 @@ package WindowPackages;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.io.File;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+import User.Admin;
+import User.FileManager;
+
 /**
+ * 
  *
  * @author Dinel
  */
 public class AdminWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdminWindow
-     */
+    private Admin admin;
     CardLayout cardLayout;
-    public AdminWindow() {
+    public AdminWindow(Admin xadmin) {
+        //Setups
+        File userFile = new File("./src/TextFiles/users.txt");
+        File reFile = new File("./src/TextFiles/realestate.txt");
+        admin = xadmin;
+        admin.setReFm(new FileManager(reFile));
+        admin.setUserFm(new FileManager(userFile));
+        admin.refreshUsers();
+        admin.refreshBlocks();
+
         initComponents();
+
+        ///Card Layout Switching
         Component [] components = this.getContentPane().getComponents();
         for (Component component : components){
             
@@ -50,60 +67,69 @@ public class AdminWindow extends javax.swing.JFrame {
         Design1 = new javax.swing.JLabel();
         Design2 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        browingButton1 = new javax.swing.JButton();
-        browingButton2 = new javax.swing.JButton();
-        browingButton3 = new javax.swing.JButton();
+        viewReport = new javax.swing.JButton();
+        manageLots = new javax.swing.JButton();
+        manageUser = new javax.swing.JButton();
         pnlCards = new javax.swing.JPanel();
         pnlCard1 = new javax.swing.JPanel();
-        Price = new javax.swing.JLabel();
-        Size = new javax.swing.JLabel();
-        House = new javax.swing.JLabel();
-        Lot = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        Price = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        min = new javax.swing.JLabel();
+        pmiDrop1 = new javax.swing.JComboBox<>();
+        Size = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        min1 = new javax.swing.JLabel();
+        sminDrop = new javax.swing.JComboBox<>();
+        max = new javax.swing.JLabel();
+        max1 = new javax.swing.JLabel();
+        pmaDrop = new javax.swing.JComboBox<>();
+        smaxDrop = new javax.swing.JComboBox<>();
+        lDrop = new javax.swing.JComboBox<>();
+        Lot = new javax.swing.JLabel();
+        hDrop = new javax.swing.JComboBox<>();
+        House = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        bTable = new javax.swing.JTable();
+        description = new javax.swing.JLabel();
+        reserve = new javax.swing.JButton();
+        buy = new javax.swing.JButton();
+        statDrop = new javax.swing.JComboBox<>();
+        statLabel = new javax.swing.JLabel();
         pnlCard2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        iD = new javax.swing.JLabel();
+        userName = new javax.swing.JLabel();
+        pword = new javax.swing.JLabel();
+        addButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        Client = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
+        clientCheck = new javax.swing.JCheckBox();
+        adminCheck = new javax.swing.JCheckBox();
+        pWordTextField = new javax.swing.JTextField();
+        mUser = new javax.swing.JLabel();
+        idTextField = new javax.swing.JTextField();
+        userNameTextField = new javax.swing.JTextField();
         pnlCard3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        bLabel = new javax.swing.JLabel();
+        bTextField = new javax.swing.JTextField();
+        lLabel = new javax.swing.JLabel();
+        lTextField = new javax.swing.JTextField();
+        pLabel = new javax.swing.JLabel();
+        pTextField = new javax.swing.JTextField();
+        addButton1 = new javax.swing.JButton();
+        updateButton2 = new javax.swing.JButton();
+        deleteButton3 = new javax.swing.JButton();
+        sLabel = new javax.swing.JLabel();
+        sTextField = new javax.swing.JTextField();
+        ltLabel = new javax.swing.JLabel();
+        htLabel = new javax.swing.JLabel();
+        htDrop = new javax.swing.JComboBox<>();
+        ltDrop = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,30 +160,29 @@ public class AdminWindow extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LOGO");
-        jLabel2.setOpaque(true);
+        jLabel2.setIcon(new javax.swing.ImageIcon (new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png")).getImage().getScaledInstance(110, 109, Image.SCALE_DEFAULT)));
 
-        browingButton1.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        browingButton1.setText("VIEW REPORT");
-        browingButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewReport.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        viewReport.setText("VIEW REPORT");
+        viewReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browingButton1ActionPerformed(evt);
+                viewReportActionPerformed(evt);
             }
         });
 
-        browingButton2.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        browingButton2.setText("MANAGE LOTS");
-        browingButton2.addActionListener(new java.awt.event.ActionListener() {
+        manageLots.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        manageLots.setText("MANAGE LOTS");
+        manageLots.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browingButton2ActionPerformed(evt);
+                manageLotsActionPerformed(evt);
             }
         });
 
-        browingButton3.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        browingButton3.setText("MANAGE USER");
-        browingButton3.addActionListener(new java.awt.event.ActionListener() {
+        manageUser.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        manageUser.setText("MANAGE USER");
+        manageUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browingButton3ActionPerformed(evt);
+                manageUserActionPerformed(evt);
             }
         });
 
@@ -170,31 +195,32 @@ public class AdminWindow extends javax.swing.JFrame {
                 .addComponent(Design1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(Design2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(browingButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(browingButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(browingButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
-                        .addGap(20, 20, 20))))
+                                .addComponent(manageUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(viewReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(manageLots, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(browingButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(viewReport, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
-                .addComponent(browingButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manageUser, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(browingButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manageLots, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
                 .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
@@ -208,43 +234,122 @@ public class AdminWindow extends javax.swing.JFrame {
 
         pnlCard1.setBackground(new java.awt.Color(209, 200, 185));
 
+        jLabel16.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
+        jLabel16.setText("VIEW REPORT");
+
         Price.setBackground(new java.awt.Color(12, 22, 39));
         Price.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         Price.setForeground(new java.awt.Color(12, 22, 39));
         Price.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Price.setText("PRICE");
 
+        jLabel15.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel15.setText("in php");
+
+        min.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        min.setText("Min.");
+
+        pmiDrop1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        pmiDrop1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5,000,000", "15,000,000", "25,000,000", "35,000,000", "45,000,000", " " }));
+        pmiDrop1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pmiDrop1ItemStateChanged(evt);
+            }
+        });
+        pmiDrop1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pmiDrop1ActionPerformed(evt);
+            }
+        });
+
         Size.setBackground(new java.awt.Color(12, 22, 39));
         Size.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         Size.setForeground(new java.awt.Color(12, 22, 39));
         Size.setText("SIZE");
 
-        House.setBackground(new java.awt.Color(12, 22, 39));
-        House.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        House.setForeground(new java.awt.Color(12, 22, 39));
-        House.setText("HOUSE");
+        jLabel17.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel17.setText("in sqm");
+
+        min1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        min1.setText("Min.");
+
+        sminDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        sminDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "80", "100", "120", "150", "180", "200", " " }));
+        sminDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sminDropItemStateChanged(evt);
+            }
+        });
+
+        max.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        max.setText("Max.");
+
+        max1.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        max1.setText("Max.");
+
+        pmaDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        pmaDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10,000,000", "20,000,000", "30,000.000", "40,000,000", "50,000.000" }));
+        pmaDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pmaDropItemStateChanged(evt);
+            }
+        });
+        pmaDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pmaDropActionPerformed(evt);
+            }
+        });
+
+        smaxDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        smaxDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "200", "250", "300", "350", "400", "500" }));
+        smaxDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                smaxDropItemStateChanged(evt);
+            }
+        });
+
+        lDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        lDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Corner Lot", "Interior Lot", "Outer Lot", " " }));
+        lDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                lDropItemStateChanged(evt);
+            }
+        });
+        lDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lDropActionPerformed(evt);
+            }
+        });
 
         Lot.setBackground(new java.awt.Color(12, 22, 39));
         Lot.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
         Lot.setForeground(new java.awt.Color(12, 22, 39));
         Lot.setText("LOT");
 
-        jLabel4.setBackground(new java.awt.Color(255, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Image");
-        jLabel4.setOpaque(true);
+        hDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        hDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bungalow", "Modern-Minimalist", "Two-Story", "Duplex", "Town House" }));
+        hDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                hDropItemStateChanged(evt);
+            }
+        });
 
-        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Description");
-        jLabel10.setOpaque(true);
+        House.setBackground(new java.awt.Color(12, 22, 39));
+        House.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        House.setForeground(new java.awt.Color(12, 22, 39));
+        House.setText("HOUSE");
+
+        image.setBackground(new java.awt.Color(255, 0, 0));
+        image.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        image.setText("Image");
+        image.setOpaque(true);
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1536, 864));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -267,135 +372,198 @@ public class AdminWindow extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(jTable1);
+        bTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        bTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(bTable);
 
-        jButton2.setText("Buy");
+        description.setBackground(new java.awt.Color(0, 0, 0));
+        description.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        description.setForeground(new java.awt.Color(255, 255, 255));
+        description.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        description.setText("Description");
+        description.setOpaque(true);
 
-        jButton1.setText("Reserve");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        reserve.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        reserve.setText("Reserve");
+        reserve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                reserveActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        buy.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        buy.setText("Buy");
+        buy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                buyActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        statDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        statDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Reserved", "Sold" }));
+        statDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                statDropItemStateChanged(evt);
+            }
+        });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel15.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
-        jLabel15.setText("MANAGE USER");
-
-        jLabel16.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
-        jLabel16.setText("VIEW REPORT");
+        statLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        statLabel.setText("STATUS");
 
         javax.swing.GroupLayout pnlCard1Layout = new javax.swing.GroupLayout(pnlCard1);
         pnlCard1.setLayout(pnlCard1Layout);
         pnlCard1Layout.setHorizontalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(image, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCard1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                                .addComponent(Size)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel17))
+                                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                                        .addComponent(min1)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(sminDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                                        .addComponent(min)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(pmiDrop1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                                        .addComponent(max1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(pmaDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                                        .addComponent(max, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(smaxDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                        .addComponent(Price)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel15)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(House)
+                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Lot)
+                                            .addComponent(hDrop, 0, 0, Short.MAX_VALUE)
+                                            .addComponent(lDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(statLabel)
+                                    .addComponent(statDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(38, 38, 38))
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addComponent(Price)
-                        .addGap(57, 57, 57)
-                        .addComponent(Size)
-                        .addGap(74, 74, 74)
-                        .addComponent(House)
-                        .addGap(50, 50, 50)
-                        .addComponent(Lot))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(359, 359, 359))
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-            .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCard1Layout.createSequentialGroup()
-                    .addGap(539, 539, 539)
-                    .addComponent(jLabel15)
-                    .addContainerGap(540, Short.MAX_VALUE)))
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(reserve)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buy, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(description, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlCard1Layout.setVerticalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addComponent(jLabel16)
-                        .addGap(75, 75, 75)
-                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Price)
-                            .addComponent(Size)
-                            .addComponent(House)
-                            .addComponent(Lot))
-                        .addGap(2, 2, 2)
-                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addComponent(House)
+                                .addGap(2, 2, 2)
+                                .addComponent(hDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Price)
+                                    .addComponent(jLabel15))
+                                .addGap(2, 2, 2)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(min)
+                                        .addComponent(pmiDrop1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(pmaDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(max1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addComponent(statLabel)
+                                .addGap(1, 1, 1)
+                                .addComponent(statDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Size)
+                            .addComponent(Lot)
+                            .addComponent(jLabel17))
+                        .addGap(9, 9, 9)
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(smaxDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sminDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(min1)
+                            .addComponent(max, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCard1Layout.createSequentialGroup()
-                    .addGap(417, 417, 417)
-                    .addComponent(jLabel15)
-                    .addContainerGap(418, Short.MAX_VALUE)))
+                            .addComponent(buy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reserve, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard1, "pnlCard1");
 
         pnlCard2.setBackground(new java.awt.Color(209, 200, 185));
+        pnlCard2.setMaximumSize(new java.awt.Dimension(1536, 864));
+        pnlCard2.setPreferredSize(new java.awt.Dimension(1536, 864));
 
-        jLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel1.setText("ID");
+        iD.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        iD.setText("ID");
 
-        jLabel6.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel6.setText("USERNAME");
+        userName.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        userName.setText("USERNAME");
 
-        jLabel7.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel7.setText("PASSWORD");
+        pword.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        pword.setText("PASSWORD");
 
-        jButton3.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton3.setText("ADD");
+        addButton.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        addButton.setText("ADD");
 
-        jButton4.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton4.setText("DELETE");
+        deleteButton.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        deleteButton.setText("DELETE");
 
-        jButton5.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton5.setText("UPDATE");
+        updateButton.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        updateButton.setText("UPDATE");
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(1536, 864));
 
@@ -425,65 +593,56 @@ public class AdminWindow extends javax.swing.JFrame {
         jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane2.setViewportView(jTable2);
 
-        Client.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        Client.setText("CLIENT");
+        clientCheck.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        clientCheck.setText("CLIENT");
 
-        jCheckBox3.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        jCheckBox3.setText("ADMIN");
+        adminCheck.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        adminCheck.setText("ADMIN");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-
-        jLabel14.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
-        jLabel14.setText("MANAGE USER");
+        mUser.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
+        mUser.setText("MANAGE USER");
 
         javax.swing.GroupLayout pnlCard2Layout = new javax.swing.GroupLayout(pnlCard2);
         pnlCard2.setLayout(pnlCard2Layout);
         pnlCard2Layout.setHorizontalGroup(
             pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard2Layout.createSequentialGroup()
-                .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlCard2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCard2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard2Layout.createSequentialGroup()
-                                .addGap(0, 145, Short.MAX_VALUE)
-                                .addComponent(jButton3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard2Layout.createSequentialGroup()
-                                        .addComponent(jButton5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(pnlCard2Layout.createSequentialGroup()
-                                        .addComponent(jCheckBox3)
-                                        .addGap(36, 36, 36)))
-                                .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Client)
-                                    .addComponent(jButton4)))))
+                .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCard2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCard2Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(iD)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlCard2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2))
+                                .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mUser)
+                                    .addGroup(pnlCard2Layout.createSequentialGroup()
+                                        .addComponent(userName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCard2Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlCard2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(8, 8, 8)
-                                .addComponent(jTextField3)))))
+                                .addComponent(addButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(adminCheck)
+                                    .addComponent(updateButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(deleteButton)
+                                    .addComponent(clientCheck, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(pnlCard2Layout.createSequentialGroup()
+                                .addComponent(pword)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pWordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
         pnlCard2Layout.setVerticalGroup(
             pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,28 +651,28 @@ public class AdminWindow extends javax.swing.JFrame {
                 .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCard2Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jLabel14)
+                        .addComponent(mUser)
                         .addGap(47, 47, 47)
                         .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(iD)
+                            .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
                         .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(userName)
+                            .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(pword, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pWordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox3)
-                            .addComponent(Client))
+                            .addComponent(adminCheck)
+                            .addComponent(clientCheck))
                         .addGap(25, 25, 25)
                         .addGroup(pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton5)
-                            .addComponent(jButton4)))
+                            .addComponent(addButton)
+                            .addComponent(updateButton)
+                            .addComponent(deleteButton)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
@@ -550,49 +709,44 @@ public class AdminWindow extends javax.swing.JFrame {
         jTable3.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane3.setViewportView(jTable3);
 
-        jLabel3.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel3.setText("BLOCK");
+        bLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        bLabel.setText("BLOCK");
 
-        jTextField4.setText("jTextField1");
+        lLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        lLabel.setText("LOT");
 
-        jLabel8.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel8.setText("LOT");
-
-        jTextField5.setText("jTextField1");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        lTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                lTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel9.setText("PRICE");
+        pLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        pLabel.setText("PRICE");
 
-        jTextField6.setText("jTextField1");
+        addButton1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        addButton1.setText("ADD");
 
-        jButton6.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton6.setText("ADD");
+        updateButton2.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        updateButton2.setText("UPDATE");
 
-        jButton7.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton7.setText("UPDATE");
+        deleteButton3.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        deleteButton3.setText("DELETE");
 
-        jButton8.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton8.setText("DELETE");
+        sLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        sLabel.setText("SIZE");
 
-        jLabel11.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel11.setText("SIZE");
+        ltLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        ltLabel.setText("LOT TYPE");
 
-        jTextField7.setText("jTextField1");
+        htLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        htLabel.setText("HOUSE TYPE");
 
-        jLabel12.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel12.setText("LOT TYPE");
+        htDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        htDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bungalow", "Modern-Minimalist", "Two-Story", "Duplex", "Town House" }));
 
-        jLabel13.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jLabel13.setText("HOUSE TYPE");
-
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ltDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        ltDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Corner Lot", "Interior Lot", "Outer Lot" }));
 
         jLabel5.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
         jLabel5.setText("MANAGE LOTS");
@@ -604,83 +758,82 @@ public class AdminWindow extends javax.swing.JFrame {
             .addGroup(pnlCard3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard3Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCard3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(htLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(htDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ltLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ltDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCard3Layout.createSequentialGroup()
+                        .addComponent(bLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlCard3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
+                        .addComponent(lLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(pnlCard3Layout.createSequentialGroup()
-                            .addComponent(jButton6)
+                            .addComponent(addButton1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton7)
+                            .addComponent(updateButton2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton8))
+                            .addComponent(deleteButton3))
                         .addGroup(pnlCard3Layout.createSequentialGroup()
                             .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel9))
+                                .addComponent(sLabel)
+                                .addComponent(pLabel))
                             .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(pnlCard3Layout.createSequentialGroup()
                                     .addGap(23, 23, 23)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(sTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(pnlCard3Layout.createSequentialGroup()
                                     .addGap(18, 18, 18)
-                                    .addComponent(jTextField6))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                    .addComponent(pTextField))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 727, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         pnlCard3Layout.setVerticalGroup(
             pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard3Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
             .addGroup(pnlCard3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel5)
-                .addGap(49, 49, 49)
-                .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
                 .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlCard3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(49, 49, 49)
+                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bLabel)
+                            .addComponent(bTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(htLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ltLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(htDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ltDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addGroup(pnlCard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addButton1)
+                            .addComponent(updateButton2)
+                            .addComponent(deleteButton3))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard3, "pnlCard3");
@@ -704,36 +857,76 @@ public class AdminWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logOutActionPerformed
 
-    private void browingButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browingButton1ActionPerformed
+    private void viewReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReportActionPerformed
         // TODO add your handling code here:
         cardLayout.show(pnlCards, "pnlCard1");
-    }//GEN-LAST:event_browingButton1ActionPerformed
+    }//GEN-LAST:event_viewReportActionPerformed
 
-    private void browingButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browingButton2ActionPerformed
+    private void manageLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageLotsActionPerformed
         // TODO add your handling code here:
         cardLayout.show(pnlCards, "pnlCard3");
-    }//GEN-LAST:event_browingButton2ActionPerformed
+    }//GEN-LAST:event_manageLotsActionPerformed
 
-    private void browingButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browingButton3ActionPerformed
+    private void manageUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserActionPerformed
         // TODO add your handling code here:
         cardLayout.show(pnlCards, "pnlCard2");
-    }//GEN-LAST:event_browingButton3ActionPerformed
+    }//GEN-LAST:event_manageUserActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void lTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_lTextFieldActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void bTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTableMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_bTableMouseClicked
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void reserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_reserveActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_buyActionPerformed
+
+    private void sminDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sminDropItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sminDropItemStateChanged
+
+    private void pmiDrop1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmiDrop1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pmiDrop1ActionPerformed
+
+    private void pmiDrop1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pmiDrop1ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pmiDrop1ItemStateChanged
+
+    private void smaxDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_smaxDropItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_smaxDropItemStateChanged
+
+    private void pmaDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmaDropActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pmaDropActionPerformed
+
+    private void pmaDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pmaDropItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pmaDropItemStateChanged
+
+    private void statDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_statDropItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statDropItemStateChanged
+
+    private void hDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_hDropItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hDropItemStateChanged
+
+    private void lDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lDropActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lDropActionPerformed
+
+    private void lDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_lDropItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lDropItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -765,72 +958,82 @@ public class AdminWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminWindow().setVisible(true);
+                //? I don't know what this does
+                //new AdminWindow().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox Client;
     private javax.swing.JLabel Design1;
     private javax.swing.JLabel Design2;
     private javax.swing.JLabel House;
     private javax.swing.JLabel Lot;
     private javax.swing.JLabel Price;
     private javax.swing.JLabel Size;
-    private javax.swing.JButton browingButton1;
-    private javax.swing.JButton browingButton2;
-    private javax.swing.JButton browingButton3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton addButton1;
+    private javax.swing.JCheckBox adminCheck;
+    private javax.swing.JLabel bLabel;
+    private javax.swing.JTable bTable;
+    private javax.swing.JTextField bTextField;
+    private javax.swing.JButton buy;
+    private javax.swing.JCheckBox clientCheck;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteButton3;
+    private javax.swing.JLabel description;
+    private javax.swing.JComboBox<String> hDrop;
+    private javax.swing.JComboBox<String> htDrop;
+    private javax.swing.JLabel htLabel;
+    private javax.swing.JLabel iD;
+    private javax.swing.JTextField idTextField;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JComboBox<String> lDrop;
+    private javax.swing.JLabel lLabel;
+    private javax.swing.JTextField lTextField;
     private javax.swing.JButton logOut;
+    private javax.swing.JComboBox<String> ltDrop;
+    private javax.swing.JLabel ltLabel;
+    private javax.swing.JLabel mUser;
+    private javax.swing.JButton manageLots;
+    private javax.swing.JButton manageUser;
+    private javax.swing.JLabel max;
+    private javax.swing.JLabel max1;
+    private javax.swing.JLabel min;
+    private javax.swing.JLabel min1;
+    private javax.swing.JLabel pLabel;
+    private javax.swing.JTextField pTextField;
+    private javax.swing.JTextField pWordTextField;
+    private javax.swing.JComboBox<String> pmaDrop;
+    private javax.swing.JComboBox<String> pmiDrop1;
     private javax.swing.JPanel pnlCard1;
     private javax.swing.JPanel pnlCard2;
     private javax.swing.JPanel pnlCard3;
     private javax.swing.JPanel pnlCards;
+    private javax.swing.JLabel pword;
+    private javax.swing.JButton reserve;
+    private javax.swing.JLabel sLabel;
+    private javax.swing.JTextField sTextField;
+    private javax.swing.JComboBox<String> smaxDrop;
+    private javax.swing.JComboBox<String> sminDrop;
+    private javax.swing.JComboBox<String> statDrop;
+    private javax.swing.JLabel statLabel;
+    private javax.swing.JButton updateButton;
+    private javax.swing.JButton updateButton2;
+    private javax.swing.JLabel userName;
+    private javax.swing.JTextField userNameTextField;
+    private javax.swing.JButton viewReport;
     // End of variables declaration//GEN-END:variables
 }
