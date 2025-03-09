@@ -11,5 +11,5 @@ import RealEstate.Lot;
  * @author Joseph Rey
  */
 public interface IPayment {
-    public Invoice pay(Lot lot);
+    public Invoice pay(int blockNo, Lot lot);
 }

@@ -20,6 +20,7 @@ public class Admin extends User {
     private HouseFactory houseFactory;
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Block> blocks = new ArrayList<>();
+    private Browser browser;
 
  
     //Constructor
@@ -36,6 +37,7 @@ public class Admin extends User {
     }
     
     public void refreshBlocks() {
+        blocks.clear();
         int lotIndex = 0;
         int blockIndex = 0;
         ArrayList<String[]> reData = reFm.extractData();
@@ -71,8 +73,8 @@ public class Admin extends User {
     
     public void refreshUsers() {
         ArrayList<String[]> userData = userFm.extractData();
+        ArrayList<User> newUserData = new ArrayList<>();
         User user;
-        
         for(String[] row : userData ) {
             if(userData.getFirst().equals(row)) {
                 continue;
@@ -81,31 +83,30 @@ public class Admin extends User {
             user = new User(row[1], row[2]);
             user.setId(Integer.parseInt(row[0]));
             user.setType(row[3]);
-            users.add(user);
+            newUserData.add(user);
         }
         
+        users = newUserData;
     }
     
     public void addLot(int blockNo, Lot newLot) {
-        int houseType = 0;
-        for(Block block : blocks) {
-            if(block.getBlockNo() != blockNo) {
-            }
-            
-            if(block.getLots().size() != 10) {
-                newLot.setLotNo(block.getLots().size() + 1);
-                newLot.setRealEstateID(Integer.parseInt(blockNo + "" + newLot.getLotNo()));
-                block.getLots().add(newLot);
-                if(newLot.getHouse() != null) 
-                {
-                    houseType  = newLot.getHouse().getType();                
+        boolean canAdd = true;
+        if(!blocks.isEmpty()) {
+            for(Block block: blocks) {
+                if(block.getBlockNo() == blockNo) {
+                    if(block.getLots().size() == 10) 
+                        canAdd = false;
                 }
-                    
-                reFm.addData(new String[] {String.valueOf(newLot.getRealEstateID()), String.valueOf(block.getBlockNo() ), String.valueOf(newLot.getLotNo()), newLot.getType(), String.valueOf(newLot.getPrice()), String.valueOf(newLot.getSize()), String.valueOf(houseType), newLot.getStatus()});
-                refreshBlocks();
-                break;
             }
-        }     
+        }
+
+        if(canAdd) {
+            if(newLot.getLotNo() == 0) {
+                newLot.setLotNo(blocks.size() + 1);
+            }
+            reFm.addData(new String[] {String.valueOf(blockNo + "" + newLot.getLotNo()), String.valueOf(blockNo ), String.valueOf(newLot.getLotNo()), newLot.getType(), String.valueOf(newLot.getPrice()), String.valueOf(newLot.getSize()), String.valueOf(newLot.getHouse().getType()), newLot.getStatus()});            
+        }
+        refreshBlocks();
     }
    
     public void removeLot(int blockNo, int lotNo) {
@@ -118,7 +119,6 @@ public class Admin extends User {
                 if(lot.getLotNo() != lotNo) {
                     continue;
                 }
-
                 reFm.removeData(lot.getRealEstateID());
                 refreshBlocks();
                 break;
@@ -147,10 +147,11 @@ public class Admin extends User {
     }
     
     public void addUser(User user) {
-        refreshUsers();
-        user.setId(users.size() + 1);
+        if(user.getId() == 0) {
+            user.setId(users.size() + 1); 
+        }
         userFm.addData(new String[] {String.valueOf(user.getId()), user.getUserName(), user.getPassword(), user.getType()});
-        refreshUsers();
+        refreshUsers();        
     }
     
     public void removeuser(int id) {
@@ -158,7 +159,7 @@ public class Admin extends User {
         refreshUsers();
     }
     
-    public void udpateUser(int id, String category, String newData) {
+    public void updateUser(int id, String category, String newData) {
         userFm.updateData(id, category, newData);
         refreshUsers();
     }
@@ -198,10 +199,13 @@ public class Admin extends User {
         this.users = users;
     }
     
-    
-    
-    
-    
+    public Browser getBrowser() {
+        return browser;
+    }
+
+    public void setBrowser(Browser browser) {
+        this.browser = browser;
+    }
     
     
     

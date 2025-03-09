@@ -29,12 +29,16 @@ public class Browser {
     public void viewListings(DefaultTableModel table, boolean filtered) {
         DecimalFormat df = new DecimalFormat("#,###.00");
         
+        if(listings.isEmpty()) {
+            return;
+        }
+
         table.setRowCount(0);
         
         if(filtered) {
             for(Block block : filter.getFilteredList()) {
                 for(Lot lot : block.getLots()) {
-                table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), df.format(lot.getPrice()), df.format(lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), String.join(" ", lot.getHouse().getClass().getSimpleName().split("(?=[A-Z])"))  });
+                    table.addRow(new Object[] { String.valueOf(lot.getRealEstateID()), df.format(lot.getPrice()), df.format(lot.getSize()), String.valueOf(block.getBlockNo()), String.valueOf(lot.getLotNo()), lot.getStatus().toUpperCase(), lot.getType().toUpperCase(), String.join(" ", lot.getHouse().getClass().getSimpleName().split("(?=[A-Z])"))  });
                 }
             }
         }
@@ -47,6 +51,11 @@ public class Browser {
         }
     }
 
+    public void setListings(ArrayList<Block> listings) {
+        this.listings = listings;
+    }
+
+
     public ArrayList<Block> getListings() {
         return listings;
     }
@@ -54,6 +63,7 @@ public class Browser {
     public FilterSearch getFilter() {
         return filter;
     }
+    
 
     
     

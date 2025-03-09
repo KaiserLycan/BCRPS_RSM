@@ -4,7 +4,11 @@
  */
 package WindowPackages;
 import Payment.Invoice;
+
+import java.text.DecimalFormat;
+
 import javax.swing.ImageIcon; //
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,17 +21,24 @@ public class InvoiceWindow extends javax.swing.JFrame {
      * Creates new form PaymentWindow
      */
     Invoice inv;
+    DecimalFormat df = new DecimalFormat("#,###.00");
     public InvoiceWindow() {
         initComponents();
-  
+        
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximizes the window to full screen
     }
+    
 
     public void setInv(Invoice inv) {
         this.inv = inv;
+        jLabel4.setText(inv.getDataIssued().toString());
+        jTextField3.setText(String.join(" ", inv.getLot().getHouse().getClass().getSimpleName().split("(?=[A-Z])")));
+        jTextField6.setText(inv.getLot().getType());
+        jTextField7.setText(String.valueOf(inv.getLot().getSize()));
+        jTextField8.setText(df.format(inv.getLot().getPrice()));
     }
     
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +53,7 @@ public class InvoiceWindow extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -57,7 +69,7 @@ public class InvoiceWindow extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(1536, 864));
 
         jPanel1.setBackground(new java.awt.Color(12, 22, 39));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -74,6 +86,7 @@ public class InvoiceWindow extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/boblong.jpg")).getImage().getScaledInstance(240, 250, java.awt.Image.SCALE_SMOOTH)));
         jLabel10.setText("ESTATE PIC");
         jLabel10.setOpaque(true);
 
@@ -85,12 +98,21 @@ public class InvoiceWindow extends javax.swing.JFrame {
             }
         });
 
+        back.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        back.setText("BACK");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(51, Short.MAX_VALUE)
@@ -107,10 +129,12 @@ public class InvoiceWindow extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(353, 353, 353)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 29, -1, 720));
@@ -156,12 +180,14 @@ public class InvoiceWindow extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 710, 720));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1536, 869));
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
         // TODO add your handling code here:
-        ImageIcon icon = new ImageIcon("images/logout.png"); // not working??
+        ImageIcon icon = new ImageIcon("./src/Images/logout.png"); // not working??
 
         int confirm = JOptionPane.showConfirmDialog(this,
             "Are you sure you want to log out?", "Log Out",
@@ -172,6 +198,13 @@ public class InvoiceWindow extends javax.swing.JFrame {
             System.exit(0); // Closes the application
         }
     }//GEN-LAST:event_logOutActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        ClientWindow2 window = new ClientWindow2();
+        window.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,6 +243,7 @@ public class InvoiceWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

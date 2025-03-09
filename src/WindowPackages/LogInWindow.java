@@ -34,8 +34,6 @@ public class LogInWindow extends javax.swing.JFrame {
         master.refreshUsers();
         logger = new Login(master);
         initComponents();
-        ClientWindow2 cl = new ClientWindow2();
-        cl.setVisible(true);
     }
 
     /**
@@ -144,7 +142,7 @@ public class LogInWindow extends javax.swing.JFrame {
         jLabel1_Image.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
         jLabel1_Image.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1_Image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1_Image.setIcon(new javax.swing.ImageIcon (new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png")).getImage().getScaledInstance(240, 250, Image.SCALE_DEFAULT)));
+        jLabel1_Image.setIcon(new javax.swing.ImageIcon (new javax.swing.ImageIcon(getClass().getResource("/Images/bilog.gif")).getImage().getScaledInstance(375, 250, Image.SCALE_DEFAULT)));
         jLabel1_Image.setDoubleBuffered(true);
         jLabel1_Image.setName(""); // NOI18N
         getContentPane().add(jLabel1_Image);
@@ -193,7 +191,7 @@ public class LogInWindow extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, username + " Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
         
         if(user.getType().equals("admin")) {
-            AdminWindow adWindow = new AdminWindow(new Admin(user.getUserName(), user.getPassword()));
+            AdminWindow adWindow = new AdminWindow();
             adWindow.setVisible(true);
             this.dispose();
 

@@ -176,7 +176,7 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon (new javax.swing.ImageIcon(getClass().getResource(&quot;/Images/Logo.png&quot;)).getImage().getScaledInstance(240, 250, Image.SCALE_DEFAULT))" type="code"/>
+          <Connection code="new javax.swing.ImageIcon (new javax.swing.ImageIcon(getClass().getResource(&quot;/Images/bilog.gif&quot;)).getImage().getScaledInstance(375, 250, Image.SCALE_DEFAULT))" type="code"/>
         </Property>
         <Property name="doubleBuffered" type="boolean" value="true"/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>

@@ -1,6 +1,7 @@
 package WindowPackages;
 
 import Payment.IPayment;
+import Payment.Purchase;
 import Payment.Reserve;
 import RealEstate.Block;
 import User.FileManager;
@@ -25,6 +26,7 @@ import User.Client;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /*
@@ -64,7 +66,8 @@ public class ClientWindow2 extends javax.swing.JFrame {
         initComponents();
         tb = (DefaultTableModel) bTable.getModel();
         client.getBrowser().viewListings(tb, false);
-       
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximizes the window to full screen
+
        Component [] components = this.getContentPane().getComponents();
        for (Component component : components)
        {
@@ -92,7 +95,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
         vBar1 = new javax.swing.JLabel();
         vBar = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        browseButton = new javax.swing.JButton();
         pnlCards = new javax.swing.JPanel();
         pnlCard1 = new javax.swing.JPanel();
         image = new javax.swing.JLabel();
@@ -168,14 +170,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
         logo.setText("LOGO");
         logo.setOpaque(true);
 
-        browseButton.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        browseButton.setText("BROWSE");
-        browseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -185,11 +179,10 @@ public class ClientWindow2 extends javax.swing.JFrame {
                 .addComponent(vBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(vBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -197,11 +190,9 @@ public class ClientWindow2 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addGap(124, 124, 124))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(vBar, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -225,7 +216,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         image.setOpaque(true);
 
         description.setBackground(new java.awt.Color(0, 0, 0));
-        description.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        description.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         description.setForeground(new java.awt.Color(255, 255, 255));
         description.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         description.setText("Description");
@@ -281,7 +272,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
         });
 
         jLabel16.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("BROWSE");
 
         jPanel2.setOpaque(false);
@@ -348,7 +338,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
         });
 
         statLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        statLabel.setForeground(new java.awt.Color(0, 0, 0));
         statLabel.setText("STATUS");
 
         statDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
@@ -390,7 +379,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(statLabel)
                     .addComponent(statDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,7 +445,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
         House1.setText("HOUSE");
 
         statLabel1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        statLabel1.setForeground(new java.awt.Color(0, 0, 0));
         statLabel1.setText("STATUS");
 
         Lot2.setBackground(new java.awt.Color(12, 22, 39));
@@ -470,25 +458,18 @@ public class ClientWindow2 extends javax.swing.JFrame {
         Lot3.setText("Block No:");
 
         lotDesc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        lotDesc.setForeground(new java.awt.Color(0, 0, 0));
 
         blockDesc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        blockDesc.setForeground(new java.awt.Color(0, 0, 0));
 
         priceDesc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        priceDesc.setForeground(new java.awt.Color(0, 0, 0));
 
         lotTypeDesc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        lotTypeDesc.setForeground(new java.awt.Color(0, 0, 0));
 
         sizeDesc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        sizeDesc.setForeground(new java.awt.Color(0, 0, 0));
 
         houseDesc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        houseDesc.setForeground(new java.awt.Color(0, 0, 0));
 
         statDesc.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        statDesc.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -554,7 +535,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
                     .addComponent(statDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Lot3)
                     .addComponent(blockDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -576,7 +557,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
                         .addComponent(Size1)
                         .addComponent(jLabel5))
                     .addComponent(sizeDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                .addGap(89, 89, 89))
         );
 
         javax.swing.GroupLayout pnlCard1Layout = new javax.swing.GroupLayout(pnlCard1);
@@ -586,53 +567,46 @@ public class ClientWindow2 extends javax.swing.JFrame {
             .addGroup(pnlCard1Layout.createSequentialGroup()
                 .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCard1Layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlCard1Layout.createSequentialGroup()
-                                .addGap(373, 373, 373)
-                                .addComponent(reserve)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buy, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard1Layout.createSequentialGroup()
-                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCard1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(pnlCard1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCard1Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(reserve)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buy, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
         pnlCard1Layout.setVerticalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel16)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reserve, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard1Layout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
+                .addGap(0, 29, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -651,7 +625,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         pnlCard2Layout.setHorizontalGroup(
             pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard2Layout.createSequentialGroup()
-                .addContainerGap(371, Short.MAX_VALUE)
+                .addContainerGap(376, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
         );
@@ -683,12 +657,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
             System.exit(0); // Closes the application
         } 
     }//GEN-LAST:event_logOutActionPerformed
-
-    private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
-        // This does nothing :-(
-        //@Dinel
-
-    }//GEN-LAST:event_browseButtonActionPerformed
 
     private void statDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_statDropItemStateChanged
         selectedStatus = evt.getItem().toString().toLowerCase();
@@ -794,6 +762,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = bTable.getSelectedRow();
         Lot lot = null;
+        int blockNo = 0;
         InvoiceWindow invW; 
         
         if(row == -1) {
@@ -801,7 +770,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         }
         else {
             invW = new InvoiceWindow();
-            payment = new Reserve(Float.parseFloat(String.join("", tb.getValueAt(row, 1).toString().split((",")))));
+            payment = new Reserve(Float.parseFloat(String.join("", tb.getValueAt(row, 1).toString().split((",")))) * 0.3f);
             
             for(Block block: admin.getBlocks()) {
                 for(Lot xlot : block.getLots()) {
@@ -811,14 +780,47 @@ public class ClientWindow2 extends javax.swing.JFrame {
                     }
                 }
             }
-            invW.setInv(payment.pay(lot));
+            invW.setInv(payment.pay(blockNo, lot));
+            invW.setVisible(true);
+            dispose();
         }
-        
         
     }//GEN-LAST:event_reserveActionPerformed
 
     private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
         // TODO add your handling code here:
+        int row = bTable.getSelectedRow();
+        Lot lot = null;
+        int blockNo = 0;
+        InvoiceWindow invW; 
+        
+        if(row == -1) {
+            //Create a dialogue box encouraging the user to select a realestate
+//      Please selecet real estate hehe
+        JOptionPane.showMessageDialog(this, " Please Select Real Estate", "Welcome", JOptionPane.INFORMATION_MESSAGE);
+        
+
+
+
+
+        }
+        else {
+            invW = new InvoiceWindow();
+            payment = new Purchase();
+            
+            for(Block block: admin.getBlocks()) {
+                for(Lot xlot : block.getLots()) {
+                    if(xlot.getLotNo() == Integer.parseInt(tb.getValueAt(row, 4).toString()) && block.getBlockNo() == Integer.parseInt(tb.getValueAt(row, 3).toString())) {
+                        lot = xlot;
+                        blockNo = block.getBlockNo();
+                        break;
+                    }
+                }
+            }
+            invW.setInv(payment.pay(blockNo, lot));
+            invW.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_buyActionPerformed
 
     private void bTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTableMouseClicked
@@ -906,7 +908,6 @@ public class ClientWindow2 extends javax.swing.JFrame {
     private javax.swing.JLabel Size1;
     private javax.swing.JTable bTable;
     private javax.swing.JLabel blockDesc;
-    private javax.swing.JButton browseButton;
     private javax.swing.JButton buy;
     private javax.swing.JLabel description;
     private javax.swing.JComboBox<String> hDrop;

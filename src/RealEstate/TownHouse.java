@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
  */
 public class TownHouse implements IHouse {
     private float fixedPrice;
-    private ImageIcon image = new ImageIcon("./src/Images/bpi.jpg");
+    private ImageIcon image = new ImageIcon("./src/Images/TownHouse.png");
     private String description;
     private int type = 2;
 

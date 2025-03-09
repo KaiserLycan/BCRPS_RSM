@@ -1,5 +1,6 @@
 ID,username,password,type
 1,Kaiser,1234Admin,client
-2,Dinel,1234Admin,admin
+2,Dinel,1,admin
 3,Dinel,1234Client,client
-4,Kaiser,client,client
+7,1231231asda,1231231231,client
+4,NotKaiser,notClient,admin

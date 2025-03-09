@@ -16,8 +16,8 @@ public class Lot {
     private int lotNo;
     private float size;
     private float price;
-    private String type;
-    private String status;
+    private String type = "interior";
+    private String status = "available";
     private IHouse house;
     private ImageIcon lotImage = new ImageIcon("./src/Images/profile.png");
    
