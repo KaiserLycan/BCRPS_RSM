@@ -3,44 +3,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package WindowPackages;
-import Managers.FileManager;
-import Managers.UserManager;
-import MyLibs.User;
+import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+
+import User.Admin;
+import User.FileManager;
+import User.Login;
+import User.User;
 /**
  *
  * @author Dinel
  */
 public class LogInWindow extends javax.swing.JFrame {
-
-    File userFile = new File("./src/TextFiles/usersTable.txt");
-    UserManager um = new UserManager(new FileManager(userFile));
+    File userFile = new File("./src/TextFiles/users.txt");
+    Admin master = new Admin("master", "master");
+    Login logger;
         
     
     /**
      * Creates new form LogInWindow
      */
-    private JLabel imageLabel;
     public LogInWindow() {
-
-
+        master.setUserFm(new FileManager(userFile));
+        master.refreshUsers();
+        logger = new Login(master);
         initComponents();
         
-        
-        //dispaly Images in the jLabel
-//        imageLabel = new JLabel();
-//        ImageIcon icon = new ImageIcon(getClass().getResource("/Images/Logo.png"));
-//imageLabel.setIcon(icon);
-//        imageLabel.setIcon(icon);
-//        
-//        this.add(imageLabel);
-//        this.setLocationRelativeTo(null); // opens the form in the middle of the screen
-//        
     }
 
     /**
@@ -91,22 +84,10 @@ public class LogInWindow extends javax.swing.JFrame {
         jLabel3.setText("Username");
         jLabel3.setAutoscrolls(true);
 
-        usernameInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameInputActionPerformed(evt);
-            }
-        });
-
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Password");
-
-        passwordInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordInputActionPerformed(evt);
-            }
-        });
 
         loginButton.setBackground(new java.awt.Color(0, 0, 0));
         loginButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -161,13 +142,11 @@ public class LogInWindow extends javax.swing.JFrame {
         jLabel1_Image.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
         jLabel1_Image.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1_Image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1_Image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/real-estate-agent.png")));
-        jLabel1_Image.setText("LOGO");
+        jLabel1_Image.setIcon(new javax.swing.ImageIcon (new javax.swing.ImageIcon(getClass().getResource("/Images/Logo.png")).getImage().getScaledInstance(240, 250, Image.SCALE_DEFAULT)));
         jLabel1_Image.setDoubleBuffered(true);
         jLabel1_Image.setName(""); // NOI18N
-        jLabel1_Image.setOpaque(true);
         getContentPane().add(jLabel1_Image);
-        jLabel1_Image.setBounds(670, 240, 190, 180);
+        jLabel1_Image.setBounds(650, 170, 240, 250);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogInBg.png"))); // NOI18N
         jLabel1.setText("Hello");
@@ -205,36 +184,33 @@ public class LogInWindow extends javax.swing.JFrame {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
 
-        if (!username.trim().equals("") && !password.trim().equals("")) {
-            System.out.println(username);
-            System.out.println(password);
-            User user = um.loginUser(username, password);
-            if (user != null) {
-                
-                JOptionPane.showMessageDialog(this, "Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-                if (user.getType().equals("ADMIN")) {
-                    JFrame adminWin = new AdminWindow();
-                    adminWin.setVisible(true);
-                    this.dispose();
-                } else if (user.getType().equals("CLIENT")) {
-                    JFrame clWin = new ClientWindow2();
-                    clWin.setVisible(true);
-                    this.dispose();
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "User does not exist", "Error", JOptionPane.ERROR_MESSAGE);
+        User user = logger.login(username, password);
+
+    if (user != null){
+        JOptionPane.showMessageDialog(this, username + " Login Successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        if(user.getType().equals("admin")) {
+            AdminWindow adWindow = new AdminWindow(new Admin(user.getUserName(), user.getPassword()));
+            adWindow.setVisible(true);
+            this.dispose();
+
+        }
+        else if(user.getType().equals("client")) {
+            ClientWindow2 clWindow = new ClientWindow2();
+            System.out.println("Passed");
+            clWindow.setVisible(true);
+            this.dispose();
+        }
+
+    } else {
+            int confirm = JOptionPane.showConfirmDialog(this, "Invalid Username or Password! Would you like to try again?", "Login Failed", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirm == JOptionPane.NO_OPTION) {
+            System.out.println("User logged out.");
+            System.exit(0); // Closes the application
             }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
-
-    private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed
-
-    }//GEN-LAST:event_passwordInputActionPerformed
-
-    private void usernameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameInputActionPerformed
 
     /**
      * @param args the command line arguments

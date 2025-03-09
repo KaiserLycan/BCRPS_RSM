@@ -1,8 +1,10 @@
 package WindowPackages;
 
-import Managers.FileManager;
-import Managers.RealEstateManager;
-import MyLibs.RealEstate;
+import User.FileManager;
+import User.FilterSearch;
+
+//import Managers.RealEstateManager;
+//import MyLibs.RealEstate;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -10,6 +12,15 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.table.DefaultTableModel;
+
+import RealEstate.Block;
+import RealEstate.ConcreteHouseFactory;
+import RealEstate.HouseFactory;
+import RealEstate.Lot;
+import User.Admin;
+import User.Browser;
+import User.Client;
+
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -25,31 +36,45 @@ import javax.swing.JOptionPane;
  */
 public class ClientWindow2 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ClientWindow2
-     */
     CardLayout cardLayout;
+    Admin admin = new Admin("Master", "Master");
+    Client client = new Client("Client", "client");
+    DefaultTableModel tb;
+    final float maxPrice = 50000000;
+    final float minPrice = 5000000;
+    final float maxSize = 5000;
+    final float minsize = 80;
+    float selectMaxPrice = maxPrice;
+    float selectedMinPrice = minPrice;
+    float selectedMaxSize = maxSize;
+    float slectedMinsize = minsize;
+    String selectedLotType = "interior";
+    String selectedStatus = "available";
+    int selectedHouse = 0;
+
     public ClientWindow2() {
-        RealEstateManager rem = new RealEstateManager(new FileManager(new File("./src/TextFiles/reTable.txt")));
+        admin.setReFm(new FileManager(new File("./src/TextFiles/realestate.txt")));
+        admin.setHouseFacatory(new ConcreteHouseFactory());
+        admin.refreshBlocks();
+        client.setBrowser(new Browser());
+        client.getBrowser().setListings(admin.getBlocks());
+        client.getBrowser().setFilter(new FilterSearch(client.getBrowser().getListings()));
+
         initComponents();
-        Component [] components = this.getContentPane().getComponents();
-        for (Component component : components)
-        {
-            boolean isButton = component instanceof JButton;
-            if(isButton)
-            {
-                ((JButton) component).setUI(new BasicButtonUI());
-                ((JButton) component).setFocusPainted(false);
-            }
-        }
-        cardLayout = (CardLayout)(pnlCards.getLayout());
-        
-               this.getContentPane().setBackground(Color.black);
-       DefaultTableModel tb = (DefaultTableModel)jTable1.getModel();
-        
-        for(RealEstate re : rem.getListings()) {
-            tb.addRow(new Object[] {re.getId(), String.format( "%.2f",re.getPrice()), String.format( "%.2f",re.getPrice()), re.getBlockNumber(), re.getLotNumber()});
-        }
+        tb = (DefaultTableModel) bTable.getModel();
+        client.getBrowser().viewListings(tb, false);
+       
+       Component [] components = this.getContentPane().getComponents();
+       for (Component component : components)
+       {
+           boolean isButton = component instanceof JButton;
+           if(isButton)
+           {
+               ((JButton) component).setUI(new BasicButtonUI());
+               ((JButton) component).setFocusPainted(false);
+           }
+       }
+       cardLayout = (CardLayout)(pnlCards.getLayout());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,26 +88,31 @@ public class ClientWindow2 extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         logOut = new javax.swing.JButton();
-        Design1 = new javax.swing.JLabel();
-        Design2 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        browingButton1 = new javax.swing.JButton();
+        vBar1 = new javax.swing.JLabel();
+        vBar = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        browseButton = new javax.swing.JButton();
         pnlCards = new javax.swing.JPanel();
         pnlCard1 = new javax.swing.JPanel();
         Price = new javax.swing.JLabel();
         Size = new javax.swing.JLabel();
         House = new javax.swing.JLabel();
         Lot = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
+        description = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        bTable = new javax.swing.JTable();
+        buy = new javax.swing.JButton();
+        reserve = new javax.swing.JButton();
+        sDrop = new javax.swing.JComboBox<>();
+        hDrop = new javax.swing.JComboBox<>();
+        lDrop = new javax.swing.JComboBox<>();
+        pDrop = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        statLabel = new javax.swing.JLabel();
+        statDrop = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
         pnlCard2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -104,26 +134,26 @@ public class ClientWindow2 extends javax.swing.JFrame {
             }
         });
 
-        Design1.setBackground(new java.awt.Color(255, 101, 0));
-        Design1.setForeground(new java.awt.Color(153, 255, 255));
-        Design1.setOpaque(true);
+        vBar1.setBackground(new java.awt.Color(255, 101, 0));
+        vBar1.setForeground(new java.awt.Color(153, 255, 255));
+        vBar1.setOpaque(true);
 
-        Design2.setBackground(new java.awt.Color(209, 200, 185));
-        Design2.setForeground(new java.awt.Color(153, 255, 255));
-        Design2.setOpaque(true);
+        vBar.setBackground(new java.awt.Color(209, 200, 185));
+        vBar.setForeground(new java.awt.Color(153, 255, 255));
+        vBar.setOpaque(true);
 
-        jLabel2.setBackground(new java.awt.Color(51, 0, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LOGO");
-        jLabel2.setOpaque(true);
+        logo.setBackground(new java.awt.Color(51, 0, 255));
+        logo.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        logo.setForeground(new java.awt.Color(255, 255, 255));
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setText("LOGO");
+        logo.setOpaque(true);
 
-        browingButton1.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
-        browingButton1.setText("BROWSE");
-        browingButton1.addActionListener(new java.awt.event.ActionListener() {
+        browseButton.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
+        browseButton.setText("BROWSE");
+        browseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browingButton1ActionPerformed(evt);
+                browseButtonActionPerformed(evt);
             }
         });
 
@@ -133,33 +163,30 @@ public class ClientWindow2 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(Design1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(vBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(Design2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(vBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(browingButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(31, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))))
+                    .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(browingButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 503, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
-            .addComponent(Design2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Design1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(91, 91, 91))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(vBar, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(vBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         logOut.getAccessibleContext().setAccessibleName("BrowsingTab");
@@ -193,34 +220,34 @@ public class ClientWindow2 extends javax.swing.JFrame {
         Lot.setForeground(new java.awt.Color(12, 22, 39));
         Lot.setText("LOT");
 
-        jLabel4.setBackground(new java.awt.Color(255, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Image");
-        jLabel4.setOpaque(true);
+        image.setBackground(new java.awt.Color(255, 0, 0));
+        image.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        image.setText("Image");
+        image.setOpaque(true);
 
-        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Description");
-        jLabel10.setOpaque(true);
+        description.setBackground(new java.awt.Color(0, 0, 0));
+        description.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        description.setForeground(new java.awt.Color(255, 255, 255));
+        description.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        description.setText("Description");
+        description.setOpaque(true);
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(1536, 864));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Price", "SIZE", "BLK. NO.", "LOT NO."
+                "ID", "Price", "SIZE", "BLK. NO.", "LOT NO.", "STATUS", "LOT TYPE", "HOUSE TYPE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -231,102 +258,190 @@ public class ClientWindow2 extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(jTable1);
+        bTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        bTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(bTable);
 
-        jButton2.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton2.setText("Buy");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buy.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        buy.setText("Buy");
+        buy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buyActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
-        jButton1.setText("Reserve");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        reserve.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        reserve.setText("Reserve");
+        reserve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                reserveActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        sDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        sDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "80-100", "100-200", "200-300", "300-400", "400-500" }));
+        sDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sDropItemStateChanged(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        hDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        hDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bungalow", "Town House", "Modern-Minimalist", "Duplex", "Two-Story" }));
+        hDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                hDropItemStateChanged(evt);
+            }
+        });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        lDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Corner Lot", "Interior Lot", "Outer Lot" }));
+        lDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                lDropItemStateChanged(evt);
+            }
+        });
+        lDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lDropActionPerformed(evt);
+            }
+        });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        pDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5,000,000-10,000,000", "10,000,000-15,000,000", "15,000,000-20,000,000", "20,000,000-25,000,000", "25,000,000-30,000,000", "30,000,000-35,000,000", "35,000,000-40,000,000", "40,000,000-45,000,000", "45,000,000-50,000,000" }));
+        pDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pDropItemStateChanged(evt);
+            }
+        });
+        pDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pDropActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("in sqm");
+
+        jLabel3.setFont(new java.awt.Font("Rockwell", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setText("in php");
+
+        statLabel.setFont(new java.awt.Font("Rockwell", 1, 18)); // NOI18N
+        statLabel.setText("STATUS");
+
+        statDrop.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        statDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Reserved", "Sold" }));
+        statDrop.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                statDropItemStateChanged(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
+        jLabel16.setText("BROWSE");
 
         javax.swing.GroupLayout pnlCard1Layout = new javax.swing.GroupLayout(pnlCard1);
         pnlCard1.setLayout(pnlCard1Layout);
         pnlCard1Layout.setHorizontalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addComponent(Size)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2))
+                            .addComponent(sDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addComponent(Price)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(House)
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Lot)
+                                    .addComponent(hDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(statLabel)
+                            .addComponent(statDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(179, 179, 179))
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(pnlCard1Layout.createSequentialGroup()
-                                    .addComponent(Price)
-                                    .addGap(57, 57, 57)
-                                    .addComponent(Size)
-                                    .addGap(74, 74, 74)
-                                    .addComponent(House)
-                                    .addGap(50, 50, 50)
-                                    .addComponent(Lot))
-                                .addGroup(pnlCard1Layout.createSequentialGroup()
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(43, 43, 43)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlCard1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(description, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(image, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                                        .addComponent(reserve)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(buy, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(263, 263, 263))
         );
         pnlCard1Layout.setVerticalGroup(
             pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCard1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlCard1Layout.createSequentialGroup()
-                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Price)
-                            .addComponent(Size)
-                            .addComponent(House)
-                            .addComponent(Lot))
-                        .addGap(2, 2, 2)
-                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel16)
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCard1Layout.createSequentialGroup()
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Price)
+                                    .addComponent(jLabel3))
+                                .addGap(2, 2, 2)
+                                .addComponent(pDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Size)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCard1Layout.createSequentialGroup()
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(House)
+                                    .addComponent(statLabel))
+                                .addGap(1, 1, 1)
+                                .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(hDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(statDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(Lot)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(pnlCard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                            .addComponent(buy, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reserve, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))
+                    .addGroup(pnlCard1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard1, "BrowsingTab");
@@ -342,7 +457,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         pnlCard2Layout.setHorizontalGroup(
             pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard2Layout.createSequentialGroup()
-                .addContainerGap(285, Short.MAX_VALUE)
+                .addContainerGap(593, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
         );
@@ -351,7 +466,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
             .addGroup(pnlCard2Layout.createSequentialGroup()
                 .addGap(287, 287, 287)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCard2, "PurchasedTab");
@@ -375,21 +490,99 @@ public class ClientWindow2 extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_logOutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void reserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_reserveActionPerformed
 
-    private void browingButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browingButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_browingButton1ActionPerformed
+    private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
+        // This does nothing :-(
+        //@Dinel
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_browseButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buyActionPerformed
+
+    private void sDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sDropItemStateChanged
+        // TODO add your handling code here:
+        String[] range = evt.getItem().toString().split("-");
+        System.out.println(range[0]);
+        System.out.println(range[1]);
+        slectedMinsize = Float.parseFloat(String.join("", range[0].split(",")));
+        selectedMaxSize = Float.parseFloat(String.join("", range[1].split(",")));
+        client.getBrowser().getFilter().clearFilter();
+        client.getBrowser().getFilter().filterByLotStatus(selectedStatus).filterByValues("price", selectedMinPrice, selectMaxPrice).filterByValues("size", slectedMinsize, selectedMaxSize).filterByLotType(selectedLotType).filterByHouse(selectedHouse);
+        client.getBrowser().viewListings(tb, true);
+    }//GEN-LAST:event_sDropItemStateChanged
+
+    private void hDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_hDropItemStateChanged
+        // TODO add your handling code here:
+        //  Bungalow", "Modern-Minimalist", "Two-Story", "Duplex", "Town House"
+        String houseType = evt.getItem().toString().toLowerCase();
+        if(houseType.equals("bungalow")) {
+            selectedHouse = 1;
+        }
+        else if(houseType.equals("modern-minimalist")) {
+            selectedHouse = 3;
+        }
+        else if(houseType.equals("two-story")) {
+            selectedHouse = 5;
+        }
+        else if(houseType.equals("duplex")) {
+            selectedHouse = 4;
+        }
+        else if(houseType.equals("town house")) {
+            selectedHouse = 2;
+        }
+
+        
+        client.getBrowser().getFilter().clearFilter();
+        client.getBrowser().getFilter().filterByLotStatus(selectedStatus).filterByValues("price", selectedMinPrice, selectMaxPrice).filterByValues("size", slectedMinsize, selectedMaxSize).filterByLotType(selectedLotType).filterByHouse(selectedHouse);
+        client.getBrowser().viewListings(tb, true);        
+    }//GEN-LAST:event_hDropItemStateChanged
+
+    private void lDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_lDropItemStateChanged
+        // TODO add your handling code here:
+        String[] item = evt.getItem().toString().toLowerCase().split(" ");
+        selectedLotType = item[0];
+        client.getBrowser().getFilter().clearFilter();
+        client.getBrowser().getFilter().filterByLotStatus(selectedStatus).filterByValues("price", selectedMinPrice, selectMaxPrice).filterByValues("size", slectedMinsize, selectedMaxSize).filterByLotType(selectedLotType).filterByHouse(selectedHouse);
+        client.getBrowser().viewListings(tb, true);
+    }//GEN-LAST:event_lDropItemStateChanged
+
+    private void bTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bTableMouseClicked
+
+    private void pDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pDropItemStateChanged
+        // TODO add your handling code here:
+        String[] range = evt.getItem().toString().split("-");
+        System.out.println(range[0]);
+        System.out.println(range[1]);
+        selectedMinPrice = Float.parseFloat(String.join("", range[0].split(",")));
+        selectMaxPrice = Float.parseFloat(String.join("", range[1].split(",")));
+        client.getBrowser().getFilter().clearFilter();
+        client.getBrowser().getFilter().filterByLotStatus(selectedStatus).filterByValues("price", selectedMinPrice, selectMaxPrice).filterByValues("size", slectedMinsize, selectedMaxSize).filterByLotType(selectedLotType).filterByHouse(selectedHouse);
+        client.getBrowser().viewListings(tb, true);
+    }//GEN-LAST:event_pDropItemStateChanged
+
+    private void pDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pDropActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pDropActionPerformed
+
+    private void lDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lDropActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lDropActionPerformed
+
+    private void statDropItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_statDropItemStateChanged
+        selectedStatus = evt.getItem().toString().toLowerCase();
+        client.getBrowser().getFilter().clearFilter();
+        client.getBrowser().getFilter().filterByLotStatus(selectedStatus).filterByValues("price", selectedMinPrice, selectMaxPrice).filterByValues("size", slectedMinsize, selectedMaxSize).filterByLotType(selectedLotType).filterByHouse(selectedHouse);
+        client.getBrowser().viewListings(tb, true);
+        
+    }//GEN-LAST:event_statDropItemStateChanged
+
 
     /**
      * @param args the command line arguments
@@ -427,30 +620,35 @@ public class ClientWindow2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Design1;
-    private javax.swing.JLabel Design2;
     private javax.swing.JLabel House;
     private javax.swing.JLabel Lot;
     private javax.swing.JLabel Price;
     private javax.swing.JLabel Size;
-    private javax.swing.JButton browingButton1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JTable bTable;
+    private javax.swing.JButton browseButton;
+    private javax.swing.JButton buy;
+    private javax.swing.JLabel description;
+    private javax.swing.JComboBox<String> hDrop;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> lDrop;
     private javax.swing.JButton logOut;
+    private javax.swing.JLabel logo;
+    private javax.swing.JComboBox<String> pDrop;
     private javax.swing.JPanel pnlCard1;
     private javax.swing.JPanel pnlCard2;
     private javax.swing.JPanel pnlCards;
+    private javax.swing.JButton reserve;
+    private javax.swing.JComboBox<String> sDrop;
+    private javax.swing.JComboBox<String> statDrop;
+    private javax.swing.JLabel statLabel;
+    private javax.swing.JLabel vBar;
+    private javax.swing.JLabel vBar1;
     // End of variables declaration//GEN-END:variables
 }

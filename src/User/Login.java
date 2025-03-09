@@ -9,13 +9,16 @@ package User;
  * @author Joseph Rey
  */
 public class Login {
-    
+    private Admin ad;
+    private User user;
+
+    public Login(Admin admin) {
+        this.ad = admin;
+    }
+
     public User login(String username, String password) {
-        Admin ad = new Admin("master", "234");
-        User user = null;
-        
         for(User xuser : ad.getUsers()) {
-            if(user.verifyLogin(username, password)) {
+            if(xuser.verifyLogin(username, password)) {
                 user = xuser;
             }
         }
