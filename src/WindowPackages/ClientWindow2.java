@@ -625,7 +625,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         pnlCard2Layout.setHorizontalGroup(
             pnlCard2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCard2Layout.createSequentialGroup()
-                .addContainerGap(380, Short.MAX_VALUE)
+                .addContainerGap(394, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(163, 163, 163))
         );
@@ -776,6 +776,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
                 for(Lot xlot : block.getLots()) {
                     if(xlot.getLotNo() == Integer.parseInt(tb.getValueAt(row, 4).toString()) && block.getBlockNo() == Integer.parseInt(tb.getValueAt(row, 3).toString())) {
                         lot = xlot;
+                        blockNo = block.getBlockNo();
                         break;
                     }
                 }

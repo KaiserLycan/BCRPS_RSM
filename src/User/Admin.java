@@ -140,8 +140,8 @@ public class Admin extends User {
                 
                 reFm.updateData(Integer.parseInt(blockNo + "" + lotNo), category, newData);
                 refreshBlocks();
+                break;
             }
-            
             break;
         }
     }

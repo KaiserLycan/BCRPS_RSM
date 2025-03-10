@@ -29,14 +29,15 @@ public class Reserve implements IPayment {
     }
     
     public Invoice pay(int blockNo, Lot lot) {
+        
         Invoice invoice = new Invoice(lot);
         invoice.setDataIssued(LocalDate.now());
-        invoice.setDeductibles(0);
+        invoice.setDeductibles(lot.getPrice() * 0.5f);
         
         for(Block block : admin.getBlocks()) {
             for(Lot xlot: block.getLots()) {
                 if(xlot.getLotNo() == lot.getLotNo()) {
-                    admin.updateLot(blockNo, lot.getLotNo(), "status", "reserved" );
+                    admin.updateLot(blockNo, xlot.getLotNo(), "status", "reserved" );
                     break;
                 }
             }

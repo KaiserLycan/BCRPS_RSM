@@ -36,7 +36,7 @@ public class Purchase implements IPayment{
         for(Block block : admin.getBlocks()) {
             for(Lot xlot: block.getLots()) {
                 if(xlot.getLotNo() == lot.getLotNo()) {
-                    admin.updateLot(blockNo, lot.getLotNo(), "status", "sold" );
+                    admin.updateLot(blockNo, xlot.getLotNo(), "status", "sold" );
                     break;
                 }
             }
