@@ -32,7 +32,7 @@ public class Reserve implements IPayment {
         
         Invoice invoice = new Invoice(lot);
         invoice.setDataIssued(LocalDate.now());
-        invoice.setDeductibles(lot.getPrice() * 0.5f);
+        invoice.setDeductibles(deductedAmount);
         
         for(Block block : admin.getBlocks()) {
             for(Lot xlot: block.getLots()) {

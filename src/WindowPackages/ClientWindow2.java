@@ -770,7 +770,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         }
         else {
             invW = new InvoiceWindow();
-            payment = new Reserve(Float.parseFloat(String.join("", tb.getValueAt(row, 1).toString().split((",")))) * 0.3f);
+            payment = new Reserve(50000f);
             
             for(Block block: admin.getBlocks()) {
                 for(Lot xlot : block.getLots()) {
@@ -803,7 +803,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
         
         if(row == -1) {
             //Create a dialogue box encouraging the user to select a realestate
-//      Please selecet real estate hehe
+            //Please selecet real estate hehe
         JOptionPane.showMessageDialog(this, " Please Select Real Estate", "Welcome", JOptionPane.INFORMATION_MESSAGE);
         }
         else {
@@ -820,7 +820,7 @@ public class ClientWindow2 extends javax.swing.JFrame {
                 }
             }
             
-            if(lot.getStatus().equals(("sold")) || lot.getStatus().equals("reserved")) {
+            if(lot.getStatus().equals("reserved")) {
                 JOptionPane.showMessageDialog(this, " This estate is already sold/reserved please look other available options", "Sorry", JOptionPane.INFORMATION_MESSAGE);
             }
             else {

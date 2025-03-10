@@ -34,8 +34,8 @@ public class InvoiceWindow extends javax.swing.JFrame {
         jLabel4.setText(inv.getDataIssued().toString());
         jTextField3.setText(String.join(" ", inv.getLot().getHouse().getClass().getSimpleName().split("(?=[A-Z])")));
         jTextField6.setText(inv.getLot().getType());
-        jTextField7.setText(String.valueOf(inv.getLot().getSize()));
-        jTextField8.setText(df.format(inv.getLot().getPrice()));
+        jTextField7.setText(String.valueOf(inv.getLot().getSize()) + "sqm.");
+        jTextField8.setText(df.format(inv.getLot().getPrice()) + " - " + df.format(inv.getDeductibles()) + " = " + df.format(inv.getLot().getPrice() - inv.getDeductibles()));
     }
     
     
